@@ -590,8 +590,13 @@ textarea.text-input{min-height:120px;resize:vertical;line-height:1.5}
     <div class="level-eyebrow">// SELECT TRAINING LEVEL</div>
     <h1 class="level-h1">CHOOSE YOUR <em>OPERATION</em></h1>
     <p class="level-sub">Wähle dein Deutschniveau</p>
-    <div class="level-grid" id="levelGrid"></div>
-    <div class="level-foot">A1.1 — B2.2 // CEFR STANDARD</div>
+   <div class="level-grid" id="levelGrid"></div>
+<div class="level-foot">
+  A1.1 — B2.2 // CEFR STANDARD
+  <div style="margin-top:24px">
+    <button onclick="wipeAll()" style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--error);border:1px solid rgba(200,77,62,.4);padding:8px 16px;background:transparent;transition:all .2s;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%)" onmouseover="this.style.background='rgba(200,77,62,.1)'" onmouseout="this.style.background='transparent'">Clear All Progress</button>
+  </div>
+</div>
   </div>
 </div>
 
@@ -655,9 +660,9 @@ textarea.text-input{min-height:120px;resize:vertical;line-height:1.5}
     </div>
     <div class="hud-right">
       <div class="hud-stat xp"><b id="hudXp">0</b><span>XP</span></div>
-      <button class="hud-icon-btn danger" onclick="resetAll()" title="Reset All Progress">
-        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1015-6.7"/><path d="M3 4v5h5"/></svg>
-      </button>
+      <button class="hud-icon-btn" onclick="resetAll()" title="Change Level (progress saved)">
+  <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+</button>
       <div class="hud-avatar">A</div>
     </div>
   </div>
@@ -1106,8 +1111,11 @@ const AMIRA_MSGS = {
 };
 
 /* ============================================================
-   STATE — fresh zero template
+   MULTI-LEVEL STATE — each level keeps its own progress
    ============================================================ */
+const STORAGE_KEY = 'tacticalDeutschV2';
+const LEGACY_KEY  = 'tacticalDeutsch';
+
 function freshState(){
   return {
     level:'A1.1', xp:0, words:0, streak:0,
@@ -1122,39 +1130,109 @@ function freshState(){
     amiraLevelSeen:false
   };
 }
+
+let levelsStore = { currentLevel: null, levels: {} };
 let state = freshState();
 
-function saveState(){ try{ localStorage.setItem('tacticalDeutsch', JSON.stringify(state)); }catch(e){} }
+function ensureStateShape(){
+  ['uebCompleted','uebErrors','intelDone','listenDone','grammarDone','amiraSeen','missionProgress'].forEach(k=>{
+    if(!state[k] || typeof state[k] !== 'object') state[k] = {};
+  });
+}
+
+function saveState(){
+  if(!state || !levelsStore.currentLevel) return;
+  levelsStore.levels[levelsStore.currentLevel] = state;
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(levelsStore)); }catch(e){}
+}
+
 function loadState(){
   try{
-    const s = JSON.parse(localStorage.getItem('tacticalDeutsch'));
-    if(s){
-      state = Object.assign(freshState(), s);
-      ['uebCompleted','uebErrors','intelDone','listenDone','grammarDone','amiraSeen','missionProgress'].forEach(k=>{
-        if(!state[k] || typeof state[k] !== 'object') state[k] = {};
-      });
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const parsed = JSON.parse(raw);
+      levelsStore = Object.assign({ currentLevel: null, levels: {} }, parsed);
+      return;
+    }
+    // Migration from old format (single-level)
+    const old = localStorage.getItem(LEGACY_KEY);
+    const oldLevel = localStorage.getItem('selectedLevel');
+    if(old && oldLevel){
+      try{
+        const parsed = JSON.parse(old);
+        const migrated = Object.assign(freshState(), parsed);
+        migrated.level = oldLevel;
+        levelsStore.levels[oldLevel] = migrated;
+        levelsStore.currentLevel = oldLevel;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(levelsStore));
+      }catch(e){}
     }
   }catch(e){}
 }
 
-/* ============================================================
-   RESET — clears everything and returns to level selection
-   ============================================================ */
+/* Switch to a level, saving current progress first */
+function switchToLevel(lv){
+  if(levelsStore.currentLevel) saveState();
+  levelsStore.currentLevel = lv;
+  state = Object.assign(freshState(), levelsStore.levels[lv] || {});
+  state.level = lv;
+  ensureStateShape();
+  levelsStore.levels[lv] = state;
+  try{ localStorage.setItem('selectedLevel', lv); }catch(e){}
+  saveState();
+}
+
+/* Compute % progress for a level (based on Übungen + XP) */
+function getLevelProgress(lv){
+  const s = levelsStore.levels[lv];
+  if(!s) return 0;
+  const uebDone = Object.keys(s.uebCompleted || {}).length;
+  const intelDone = Object.keys(s.intelDone || {}).length;
+  const listenDone = Object.keys(s.listenDone || {}).length;
+  const grammarDone = Object.keys(s.grammarDone || {}).length;
+  const totalUnits = EX.length + VOCAB.length + LISTENING.length + GRAMMAR.length;
+  const totalDone = uebDone + intelDone + listenDone + grammarDone;
+  return totalUnits ? Math.round((totalDone/totalUnits)*100) : 0;
+}
+
+function hasLevelProgress(lv){
+  const s = levelsStore.levels[lv];
+  if(!s) return false;
+  return (s.xp > 0)
+    || Object.keys(s.uebCompleted || {}).length > 0
+    || Object.keys(s.intelDone || {}).length > 0
+    || Object.keys(s.listenDone || {}).length > 0
+    || Object.keys(s.grammarDone || {}).length > 0
+    || (s.commsCount || 0) > 0;
+}
+
+/* The HUD button — returns to level screen, keeps progress */
 function resetAll(){
-  if(!confirm('Reset ALL progress? You will be asked to choose your level again.')) return;
-  localStorage.removeItem('tacticalDeutsch');
-  localStorage.removeItem('selectedLevel');
-  state = freshState();
-  // Close any open overlays
+  // Close overlays
   document.getElementById('uebPlayer').classList.remove('on');
   document.getElementById('amiraMsg').classList.remove('on');
   document.getElementById('levelUp').classList.remove('on');
   document.body.style.overflow = '';
-  // Return to level selection
-  document.getElementById('shell').classList.remove('on');
-  document.getElementById('levelScreen').classList.add('active');
+  // Save & open level screen
+  saveState();
+  openLevelScreen();
 }
 window.resetAll = resetAll;
+
+/* Full wipe — only from the level screen */
+function wipeAll(){
+  if(!confirm('Erase ALL progress for EVERY level? This cannot be undone.')) return;
+  try{
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(LEGACY_KEY);
+    localStorage.removeItem('selectedLevel');
+  }catch(e){}
+  levelsStore = { currentLevel: null, levels: {} };
+  state = freshState();
+  buildLevelGrid();
+  toast('ALL PROGRESS CLEARED');
+}
+window.wipeAll = wipeAll;
 
 /* ============================================================
    BOOT
@@ -1312,26 +1390,36 @@ function buildLevelGrid(){
   grid.innerHTML = '';
   LEVELS.forEach(lv => {
     const tier = lv.startsWith('A') ? 'BEGINNER' : 'INTERMEDIATE';
+    const hasProg = hasLevelProgress(lv);
+    const pct = getLevelProgress(lv);
     const b = document.createElement('button');
     b.className = 'level-card';
-    b.innerHTML = `<div class="lv-tag">${tier}</div><div class="lv-code">${lv}</div><div class="lv-name">German Training</div><div class="lv-arrow">SELECT →</div>`;
+    b.style.position = 'relative';
+    b.innerHTML = `
+      <div class="lv-tag">${tier}${hasProg ? ' · <span style="color:var(--green);font-weight:700">'+pct+'%</span>' : ''}</div>
+      <div class="lv-code">${lv}</div>
+      <div class="lv-name">${hasProg ? 'FORTSETZEN' : 'German Training'}</div>
+      <div class="lv-arrow">${hasProg ? 'RESUME →' : 'SELECT →'}</div>
+      ${hasProg ? '<div style="position:absolute;left:0;bottom:0;height:2px;width:'+pct+'%;background:var(--green);box-shadow:0 0 8px var(--green)"></div>' : ''}
+    `;
     b.onclick = () => selectLevel(lv);
     grid.appendChild(b);
   });
 }
+
 function openLevelScreen(){
   document.getElementById('levelScreen').classList.add('active');
   document.getElementById('shell').classList.remove('on');
+  buildLevelGrid();   // refresh progress display
 }
+
 function selectLevel(lv){
-  state.level = lv;
-  saveState();
-  localStorage.setItem('selectedLevel', lv);
+  switchToLevel(lv);
   document.getElementById('levelScreen').classList.remove('active');
   document.getElementById('shell').classList.add('on');
   document.getElementById('cmdLevelTag').textContent = lv;
 
-  // Full re-render (fresh state possible after reset)
+  // Full re-render
   updateHUD();
   renderModuleGrid();
   renderMissions();
@@ -1342,7 +1430,8 @@ function selectLevel(lv){
   renderRankTable();
   buildWaveform();
 
-  toast('LEVEL ' + lv + ' SELECTED');
+  const hadProgress = hasLevelProgress(lv);
+  toast(hadProgress ? 'RESUMING ' + lv : 'LEVEL ' + lv + ' SELECTED');
 }
 
 /* ============================================================
@@ -2513,8 +2602,9 @@ function initAfterBoot(){
   initialized = true;
   buildLevelGrid();
   const savedLevel = localStorage.getItem('selectedLevel');
-  if(savedLevel && LEVELS.includes(savedLevel)){
-    state.level = savedLevel;
+  if(savedLevel && LEVELS.includes(savedLevel) && levelsStore.levels[savedLevel]){
+    // Resume previous level
+    switchToLevel(savedLevel);
     document.getElementById('shell').classList.add('on');
     document.getElementById('levelScreen').classList.remove('active');
     document.getElementById('cmdLevelTag').textContent = savedLevel;
@@ -2565,6 +2655,11 @@ window.speakUebComplete = speakUebComplete;
 window.speak = speak;
 
 loadState();
+// If we already have a current level stored, restore state from it (but don't show the shell until init)
+if(levelsStore.currentLevel && levelsStore.levels[levelsStore.currentLevel]){
+  state = Object.assign(freshState(), levelsStore.levels[levelsStore.currentLevel]);
+  ensureStateShape();
+}
 runBoot();
 </script>
 </body>
