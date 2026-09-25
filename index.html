@@ -7,54 +7,20 @@
 <title>TACTICAL DEUTSCH // OPERATOR ACHREF</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#050705;--panel:#0d110d;--panel-2:#141a13;--panel-3:#1a2117;
-  --border:#1c211a;--border-2:#2e3628;--border-3:#454F3E;
-  --green:#8BD52D;--green-br:#B7EF43;--green-dim:#4A6E1A;
-  --text:#F2F4ED;--text-2:#858D82;--text-3:#5C6359;
-  --error:#C84D3E;--xp:#D6B53C;
-}
+:root{--bg:#050705;--panel:#0d110d;--panel-2:#141a13;--panel-3:#1a2117;--border:#1c211a;--border-2:#2e3628;--border-3:#454F3E;--green:#8BD52D;--green-br:#B7EF43;--green-dim:#4A6E1A;--text:#F2F4ED;--text-2:#858D82;--text-3:#5C6359;--error:#C84D3E;--xp:#D6B53C}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
-body{
-  font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  background-image:
-    radial-gradient(ellipse at 25% 10%,rgba(139,213,45,.05),transparent 45%),
-    radial-gradient(ellipse at 85% 90%,rgba(139,213,45,.03),transparent 40%),
-    repeating-linear-gradient(0deg,rgba(255,255,255,.011) 0 1px,transparent 1px 3px);
-}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;background-image:radial-gradient(ellipse at 25% 10%,rgba(139,213,45,.05),transparent 45%),radial-gradient(ellipse at 85% 90%,rgba(139,213,45,.03),transparent 40%),repeating-linear-gradient(0deg,rgba(255,255,255,.011) 0 1px,transparent 1px 3px)}
 
-/* === WALLPAPER LAYER === */
-#wallpaper{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:url('wallpaper.jpg');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  opacity:.28;
-  filter:brightness(.6) saturate(.9) contrast(1.05);
-}
-#wallpaper::after{
-  content:"";position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,rgba(5,7,5,.55),rgba(5,7,5,.9)),
-    radial-gradient(ellipse at 50% 50%,transparent 20%,rgba(5,7,5,.7) 100%);
-}
+#wallpaper{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('wallpaper.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;opacity:.28;filter:brightness(.6) saturate(.9) contrast(1.05)}
+#wallpaper::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,5,.55),rgba(5,7,5,.9)),radial-gradient(ellipse at 50% 50%,transparent 20%,rgba(5,7,5,.7) 100%)}
 
 button{cursor:none;border:0;outline:0;background:none;font-family:inherit;color:inherit}
 ul{list-style:none}
-input{font-family:inherit}
-.h-cond{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
-.hud{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-3)}
-
+input,textarea{font-family:inherit}
 *{cursor:none!important}
-@media (max-width:900px){
-  *{cursor:auto!important}
-  .tactical-cursor{display:none!important}
-}
+@media (max-width:900px){*{cursor:auto!important}.tactical-cursor{display:none!important}}
 
-/* TACTICAL CURSOR */
 .tactical-cursor{position:fixed;top:0;left:0;width:0;height:0;pointer-events:none;z-index:99999;mix-blend-mode:difference}
 .tactical-cursor .tc-dot{position:absolute;top:-2px;left:-2px;width:4px;height:4px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);transition:transform .15s ease}
 .tactical-cursor .tc-ring{position:absolute;top:-14px;left:-14px;width:28px;height:28px;border:1px solid rgba(139,213,45,.5);border-radius:50%;transition:all .22s cubic-bezier(.2,.7,.2,1)}
@@ -67,7 +33,6 @@ input{font-family:inherit}
 .tactical-cursor.locked .tc-corner{opacity:1;width:11px;height:11px}
 .tactical-cursor.locked .tc-dot{transform:scale(1.5)}
 
-/* BOOT */
 #boot{position:fixed;inset:0;z-index:9998;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease,visibility .5s ease}
 #boot.hide{opacity:0;visibility:hidden}
 .boot-inner{width:min(560px,88vw)}
@@ -83,7 +48,6 @@ input{font-family:inherit}
 .boot-skip{position:absolute;bottom:30px;right:30px;font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:.24em;color:var(--text-3);text-transform:uppercase;border:1px solid #1c211a;padding:8px 14px;background:transparent;transition:all .2s}
 .boot-skip:hover{color:var(--green);border-color:var(--green)}
 
-/* LEVEL SELECT */
 #levelScreen{position:fixed;inset:0;z-index:9000;background:radial-gradient(ellipse at 50% 0%,rgba(139,213,45,.08),transparent 60%),#050705;display:none;align-items:center;justify-content:center;padding:30px;overflow-y:auto}
 #levelScreen.active{display:flex}
 .level-wrap{width:min(960px,100%);text-align:center;padding:20px 0}
@@ -103,11 +67,9 @@ input{font-family:inherit}
 .level-card:hover .lv-arrow{opacity:1;transform:translateX(0)}
 .level-foot{margin-top:28px;color:var(--text-3);font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
 
-/* SHELL */
 #shell{position:fixed;inset:0;display:none;flex-direction:column;z-index:2}
 #shell.on{display:flex}
 
-/* HUD BAR */
 .hudbar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:1px solid #1c211a;background:linear-gradient(180deg,rgba(10,13,10,.98),rgba(5,7,5,.96));flex:0 0 auto;position:relative;z-index:100}
 .hudbar::before{content:"";position:absolute;bottom:-1px;left:0;width:180px;height:1px;background:linear-gradient(90deg,var(--green),transparent)}
 .hud-left{display:flex;align-items:center;gap:14px}
@@ -118,28 +80,28 @@ input{font-family:inherit}
 .hud-center .hc-tag{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.24em;color:var(--text-3);text-transform:uppercase;padding:0 10px;border-right:1px solid #1c211a}
 .hud-center .hc-tag:last-child{border-right:0}
 .hud-center .hc-tag b{color:var(--green);font-weight:600}
-.hud-right{display:flex;align-items:center;gap:16px}
+.hud-right{display:flex;align-items:center;gap:12px}
 .hud-stat{text-align:right;font-family:'Rajdhani',sans-serif}
 .hud-stat b{display:block;font-family:'Oswald',sans-serif;font-size:15px;color:#fff;letter-spacing:.05em;text-transform:uppercase;font-weight:600;line-height:1}
 .hud-stat span{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-3)}
 .hud-stat.xp b{color:var(--xp)}
 .hud-avatar{width:34px;height:34px;background:linear-gradient(135deg,var(--green),var(--green-dim));color:#050705;display:grid;place-items:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;clip-path:polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%)}
+.hud-icon-btn{width:34px;height:34px;display:grid;place-items:center;background:transparent;border:1px solid var(--border);color:var(--text-3);clip-path:polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%);transition:all .18s}
+.hud-icon-btn:hover{border-color:var(--green-dim);color:var(--green);background:rgba(139,213,45,.04)}
+.hud-icon-btn.danger:hover{border-color:var(--error);color:var(--error);background:rgba(200,77,62,.06)}
+.hud-icon-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .xpbar{height:2px;background:#1a1f18;position:relative;overflow:hidden;flex:0 0 auto}
 .xpbar i{position:absolute;inset:0;width:0%;background:linear-gradient(90deg,var(--green-dim),var(--green));box-shadow:0 0 8px var(--green);transition:width .8s cubic-bezier(.2,.7,.2,1)}
 
-/* VIEWPORT */
 .viewport{flex:1;position:relative;overflow:hidden}
 .view{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease,transform .35s cubic-bezier(.2,.7,.2,1);transform:translateX(24px)}
 .view.active{opacity:1;visibility:visible;transform:none}
-.view.left{transform:translateX(-24px)}
-.view.entering-right{transform:translateX(24px)}
 .view-scroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:30px 36px 80px;scroll-behavior:smooth}
 .view-scroll::-webkit-scrollbar{width:6px}
 .view-scroll::-webkit-scrollbar-track{background:transparent}
 .view-scroll::-webkit-scrollbar-thumb{background:#1c211a}
 .view-scroll::-webkit-scrollbar-thumb:hover{background:var(--green-dim)}
 
-/* COMMAND CENTER */
 #view-command.view-scroll{padding:30px 40px 40px;overflow:hidden}
 .cmd-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:22px;flex-wrap:wrap;gap:14px}
 .cmd-title{font-family:'Oswald',sans-serif;font-size:clamp(24px,3vw,36px);letter-spacing:.06em;color:#fff;text-transform:uppercase;line-height:1}
@@ -177,7 +139,6 @@ input{font-family:inherit}
 .module-enter{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.2em;color:var(--green);text-transform:uppercase;opacity:0;transform:translateX(-6px);transition:all .25s;font-weight:600}
 .module:hover .module-enter{opacity:1;transform:translateX(0)}
 
-/* MODULE VIEWS */
 .mod-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid #1c211a;margin-bottom:22px;flex-wrap:wrap;gap:14px}
 .mod-head-l{display:flex;align-items:center;gap:16px}
 .back-btn{display:flex;align-items:center;gap:8px;font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-2);padding:8px 14px;border:1px solid #1c211a;background:transparent;transition:all .2s;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%);font-weight:600}
@@ -191,7 +152,6 @@ input{font-family:inherit}
 .mod-hud-item span{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-3)}
 .mod-hud-item.xp b{color:var(--xp)}
 
-/* CAROUSEL */
 .carousel{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;padding:6px 4px 20px;scroll-snap-type:x mandatory;scrollbar-width:none}
 .carousel::-webkit-scrollbar{height:6px}
 .carousel::-webkit-scrollbar-track{background:transparent}
@@ -206,7 +166,6 @@ input{font-family:inherit}
 .carousel-dots i{width:6px;height:6px;border-radius:50%;background:#2a3328;transition:all .25s}
 .carousel-dots i.on{background:var(--green);box-shadow:0 0 8px var(--green);width:20px;border-radius:3px}
 
-/* MISSION CARDS */
 .mission-card{width:320px;min-height:260px;background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid var(--border);padding:22px;display:flex;flex-direction:column;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);transition:all .25s;position:relative;overflow:hidden;text-align:left}
 .mission-card::after{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--green),transparent 70%);opacity:0;transition:opacity .25s}
 .mission-card:hover{border-color:var(--green-dim);background:linear-gradient(160deg,#1b2216,#131813);transform:translateY(-4px);box-shadow:0 0 26px rgba(139,213,45,.16)}
@@ -228,14 +187,13 @@ input{font-family:inherit}
 .mission-card-xp b{font-weight:700}
 .mission-card-enter{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.22em;color:var(--green);text-transform:uppercase;opacity:0;transform:translateX(-6px);transition:all .2s}
 .mission-card:hover .mission-card-enter{opacity:1;transform:translateX(0)}
-
-/* LISTEN CARDS (active state) */
 .listen-card.active{border-color:var(--green-dim);background:linear-gradient(160deg,#1b2216,#131813);box-shadow:0 0 24px rgba(139,213,45,.16)}
 .listen-card.active .mission-card-enter{opacity:1;transform:translateX(0);color:var(--green)}
 .listen-card.active .mission-card-num{color:var(--green-br)}
 .listen-card.active .mission-card-progress i{background:var(--green-br);box-shadow:0 0 10px var(--green-br)}
+.listen-card.done-card{opacity:.55}
+.listen-card.done-card::before{content:"✓";position:absolute;top:12px;right:12px;color:var(--green);font-weight:700;font-size:16px;z-index:5}
 
-/* INTEL CARDS */
 .intel-card-car{width:420px;min-height:400px;background:linear-gradient(160deg,#141a13,#0d110d);border:1px solid #1c211a;padding:44px 30px;position:relative;overflow:hidden;clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;scroll-snap-align:center}
 .intel-card-car::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
 .intel-card-car::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(139,213,45,.02) 0 1px,transparent 1px 5px)}
@@ -252,25 +210,6 @@ input{font-family:inherit}
 @keyframes intel-in{from{filter:blur(10px);opacity:0;transform:scale(.97)}to{filter:blur(0);opacity:1;transform:none}}
 .intel-actions-car{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1}
 
-/* EXERCISE */
-.ex-wrap-c{max-width:760px;margin:0 auto}
-.ex-card-c{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid #1c211a;padding:32px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)}
-.ex-card-c::before{content:"";position:absolute;top:0;left:0;width:60px;height:1px;background:var(--green)}
-.ex-num-c{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.32em;color:var(--green);text-transform:uppercase;margin-bottom:16px}
-.ex-q-c{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:26px;color:#fff;letter-spacing:.03em;line-height:1.3;margin-bottom:24px}
-.ex-opts-c{display:grid;gap:9px}
-.ex-opt-c{text-align:left;background:#0d110d;border:1px solid #1c211a;padding:16px 18px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:.04em;font-weight:500;transition:all .16s;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);position:relative}
-.ex-opt-c:hover:not(:disabled){border-color:var(--green-dim);background:#131813;transform:translateX(4px)}
-.ex-opt-c.correct{border-color:var(--green);background:rgba(139,213,45,.08);color:var(--green)}
-.ex-opt-c.wrong{border-color:var(--error);background:rgba(200,77,62,.08);color:var(--error)}
-.ex-opt-c:disabled{cursor:default}
-.ex-opt-c .key{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.2em;color:var(--text-3)}
-.ex-result-c{margin-top:20px;padding:14px 18px;border:1px solid #1c211a;font-family:'Rajdhani',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;display:none;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
-.ex-result-c.show{display:block;animation:intel-in .35s}
-.ex-result-c.ok{border-color:var(--green);color:var(--green);background:rgba(139,213,45,.05)}
-.ex-result-c.no{border-color:var(--error);color:var(--error);background:rgba(200,77,62,.05)}
-
-/* COMMS */
 .comms-wrap-c{max-width:820px;margin:0 auto}
 .comms-panel-c{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid #1c211a;padding:28px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)}
 .comms-head-c{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid #1c211a;margin-bottom:22px;flex-wrap:wrap;gap:10px}
@@ -289,7 +228,6 @@ input{font-family:inherit}
 .comms-status-c b{color:var(--green)}
 .comms-status-c.rec b{color:var(--error);animation:blink 1s infinite}
 
-/* LISTENING */
 .listen-wrap-c{max-width:900px;margin:0 auto}
 .listen-panel-c{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid #1c211a;padding:28px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)}
 .listen-head-c{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid #1c211a;margin-bottom:22px;flex-wrap:wrap;gap:10px}
@@ -321,7 +259,6 @@ input{font-family:inherit}
 .transcript-fr-c{font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:.03em;line-height:1.6;color:var(--text-2);padding-top:14px;border-top:1px dashed #1c211a}
 .transcript-fr-c .t-lbl{color:var(--text-3);font-size:10px;letter-spacing:.24em;text-transform:uppercase;display:block;margin-bottom:6px}
 
-/* GRAMMAR */
 .gram-wrap-c{max-width:980px;margin:0 auto}
 .gram-panel-c{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid #1c211a;padding:28px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)}
 .gram-head-c{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid #1c211a;margin-bottom:26px;flex-wrap:wrap;gap:10px}
@@ -352,14 +289,147 @@ input{font-family:inherit}
 .gi-desc{font-family:'Rajdhani',sans-serif;font-size:15px;color:#dfe5d5;line-height:1.7;letter-spacing:.02em}
 .gi-desc em{color:var(--green);font-style:normal;font-weight:600}
 
-/* TESTS */
+#view-uebungen.view-scroll{padding:26px 34px 80px}
+.ueb-stats{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:20px}
+.ueb-stat{text-align:right;font-family:'Rajdhani',sans-serif}
+.ueb-stat b{display:block;font-family:'Oswald',sans-serif;font-size:20px;color:#fff;letter-spacing:.04em;line-height:1}
+.ueb-stat span{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--text-3);margin-top:3px;display:block}
+.ueb-stat.green b{color:var(--green)}
+.ueb-stat.xp b{color:var(--xp)}
+.ueb-progress{height:3px;background:#1a1f18;position:relative;overflow:hidden;margin-bottom:24px}
+.ueb-progress i{position:absolute;left:0;top:0;height:100%;width:0%;background:linear-gradient(90deg,var(--green-dim),var(--green));box-shadow:0 0 10px var(--green);transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.unit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}
+.unit-card{position:relative;background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid var(--border);padding:18px;text-align:left;cursor:pointer;clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%);transition:all .22s cubic-bezier(.2,.7,.2,1);overflow:hidden}
+.unit-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--green),transparent 60%);opacity:0;transition:opacity .25s}
+.unit-card:hover{border-color:var(--green-dim);background:linear-gradient(160deg,#1b2216,#131813);transform:translateY(-3px);box-shadow:0 0 24px rgba(139,213,45,.16)}
+.unit-card:hover::before{opacity:1}
+.unit-card.active{border-color:var(--green);background:linear-gradient(160deg,#1c2517,#131813);box-shadow:0 0 28px rgba(139,213,45,.22)}
+.unit-card.active::before{opacity:1}
+.unit-card.done-unit{border-color:var(--green-dim)}
+.unit-card.done-unit::after{content:"✓";position:absolute;top:12px;right:12px;color:var(--green);font-weight:700;font-size:16px;z-index:5}
+.unit-num{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.32em;color:var(--green);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.unit-num::before{content:"";width:5px;height:5px;background:var(--green);box-shadow:0 0 8px var(--green)}
+.unit-title{font-family:'Oswald',sans-serif;font-size:17px;color:#fff;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;margin-bottom:6px;font-weight:600}
+.unit-sub{color:var(--text-2);font-size:11px;line-height:1.4;margin-bottom:12px;font-family:'Rajdhani',sans-serif;letter-spacing:.04em}
+.unit-meta{display:flex;justify-content:space-between;align-items:center;font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3);padding-top:10px;border-top:1px solid var(--border)}
+.unit-meta b{color:var(--green);font-weight:600}
+.unit-bar{height:2px;background:#1a1f18;position:relative;overflow:hidden;margin-top:10px}
+.unit-bar i{position:absolute;left:0;top:0;height:100%;width:0%;background:var(--green);transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.quick-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:26px}
+.qa{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid var(--border);padding:16px;display:flex;align-items:center;gap:14px;text-align:left;clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);transition:all .2s}
+.qa:hover{border-color:var(--green-dim);background:linear-gradient(160deg,#1b2216,#131813);transform:translateY(-2px)}
+.qa-icon{width:38px;height:38px;flex:0 0 38px;background:rgba(139,213,45,.1);border:1px solid var(--green-dim);color:var(--green);display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
+.qa-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.qa-body{flex:1;min-width:0}
+.qa-title{font-family:'Oswald',sans-serif;font-size:13px;color:#fff;letter-spacing:.1em;text-transform:uppercase;line-height:1;margin-bottom:4px}
+.qa-sub{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3)}
+.ueb-sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:12px}
+.ueb-sec-head h2{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:.12em;color:#fff;font-weight:600;display:flex;align-items:center;gap:12px}
+.ueb-sec-head h2::before{content:"";width:3px;height:14px;background:var(--green);box-shadow:0 0 8px var(--green)}
+.ueb-sec-head .sec-meta{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-3)}
+.ex-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:26px}
+.ex-card{position:relative;background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:12px;text-align:left;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%);transition:all .18s;cursor:pointer}
+.ex-card:hover{border-color:var(--green-dim);background:linear-gradient(160deg,#1b2216,#131813);transform:translateX(2px)}
+.ex-card.done{border-color:var(--green-dim);background:linear-gradient(160deg,rgba(139,213,45,.06),rgba(139,213,45,.02))}
+.ex-card.err{border-color:rgba(200,77,62,.5)}
+.ex-num{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.2em;color:var(--text-3);width:32px;flex:0 0 32px}
+.ex-body{flex:1;min-width:0}
+.ex-q{font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text);line-height:1.35;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.ex-tag{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--green)}
+.ex-status{width:20px;height:20px;flex:0 0 20px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--border-2);color:var(--text-3);font-size:11px;font-weight:700}
+.ex-card.done .ex-status{border-color:var(--green);background:var(--green);color:#050705}
+.ex-card.err .ex-status{border-color:var(--error);color:var(--error)}
+.errors-list{display:grid;gap:10px}
+.err-item{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid rgba(200,77,62,.3);border-left:3px solid var(--error);padding:14px 18px;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+.err-q{font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text);margin-bottom:6px}
+.err-row{font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text-2);letter-spacing:.02em;margin-top:4px}
+.err-row .lbl{color:var(--text-3);font-size:10px;letter-spacing:.24em;text-transform:uppercase;display:inline-block;min-width:60px;margin-right:8px}
+.err-row .ok{color:var(--green);font-weight:600}
+.err-row .bad{color:var(--error);font-weight:600}
+.err-rule{margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text-2);letter-spacing:.02em}
+.ueb-empty{text-align:center;padding:40px 20px;font-family:'Rajdhani',sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+.ueb-empty b{display:block;color:var(--green);font-family:'Oswald',sans-serif;font-size:16px;letter-spacing:.2em;margin-bottom:8px}
+
+#uebPlayer{position:fixed;inset:0;z-index:9995;background:#050705;display:none;flex-direction:column;padding:22px;background-image:radial-gradient(ellipse at 50% 0%,rgba(139,213,45,.06),transparent 60%),repeating-linear-gradient(0deg,rgba(255,255,255,.011) 0 1px,transparent 1px 3px)}
+#uebPlayer.on{display:flex}
+.up-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:12px}
+.up-top-l{display:flex;align-items:center;gap:14px}
+.up-close{width:36px;height:36px;display:grid;place-items:center;background:transparent;border:1px solid var(--border);color:var(--text-2);clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);transition:all .18s}
+.up-close:hover{border-color:var(--error);color:var(--error)}
+.up-close svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round}
+.up-breadcrumb{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.24em;color:var(--green);text-transform:uppercase}
+.up-breadcrumb small{display:block;font-size:9px;letter-spacing:.28em;color:var(--text-3);margin-top:2px;font-weight:400}
+.up-counter{font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:.14em;color:#fff}
+.up-counter b{color:var(--green)}
+.up-progress{height:3px;background:#1a1f18;position:relative;overflow:hidden;margin-bottom:26px}
+.up-progress i{position:absolute;left:0;top:0;height:100%;width:0%;background:linear-gradient(90deg,var(--green-dim),var(--green));box-shadow:0 0 8px var(--green);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.up-body{flex:1;overflow-y:auto;padding:20px 0}
+.up-inner{max-width:800px;margin:0 auto}
+.up-cat{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.ex-prompt{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid var(--border);padding:26px;margin-bottom:18px;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);position:relative}
+.ex-prompt::before{content:"";position:absolute;top:0;left:0;width:60px;height:1px;background:var(--green)}
+.up-question{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:clamp(20px,2.5vw,26px);color:#fff;letter-spacing:.03em;line-height:1.3}
+.up-question .blank{color:var(--green);text-decoration:underline;text-decoration-style:dotted;padding:0 4px}
+.up-hint{font-family:'Rajdhani',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-top:12px}
+.opts{display:grid;gap:10px;margin-bottom:20px}
+.opt{text-align:left;background:#0d110d;border:1px solid var(--border);padding:16px 18px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;letter-spacing:.03em;font-weight:500;transition:all .16s;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);display:flex;align-items:center;gap:14px}
+.opt:hover:not(:disabled){border-color:var(--green-dim);background:#131813;transform:translateX(4px)}
+.opt .okey{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.14em;width:24px;height:24px;flex:0 0 24px;display:grid;place-items:center;background:#1a1f18;color:var(--text-3);clip-path:polygon(0 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%);transition:all .16s}
+.opt:hover .okey{background:var(--green-dim);color:#050705}
+.opt.correct{border-color:var(--green);background:rgba(139,213,45,.08);color:var(--green)}
+.opt.correct .okey{background:var(--green);color:#050705}
+.opt.wrong{border-color:var(--error);background:rgba(200,77,62,.08);color:var(--error)}
+.opt.wrong .okey{background:var(--error);color:#fff}
+.opt:disabled{cursor:default}
+.text-input{width:100%;background:#0d110d;border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:18px;letter-spacing:.03em;padding:16px 18px;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);transition:border-color .18s}
+.text-input:focus{outline:none;border-color:var(--green-dim);background:#131813}
+textarea.text-input{min-height:120px;resize:vertical;line-height:1.5}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.match-col{display:grid;gap:8px}
+.match-item{background:#0d110d;border:1px solid var(--border);padding:14px 16px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:.03em;font-weight:500;text-align:left;transition:all .16s;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);cursor:pointer;position:relative}
+.match-item:hover:not(.matched){border-color:var(--green-dim);background:#131813}
+.match-item.selected{border-color:var(--green);background:rgba(139,213,45,.08);color:var(--green)}
+.match-item.matched{border-color:var(--green-dim);background:rgba(139,213,45,.04);color:var(--text-3);cursor:default;opacity:.6}
+.match-item.matched::after{content:"✓";position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--green);font-weight:700}
+.match-item.wrong{border-color:var(--error);animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.build-zone{min-height:70px;background:#0d110d;border:1px dashed var(--border-2);padding:14px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);transition:border-color .18s}
+.build-zone.has-items{border-style:solid;border-color:var(--green-dim)}
+.build-zone.correct{border-color:var(--green);background:rgba(139,213,45,.06)}
+.build-zone.wrong{border-color:var(--error);background:rgba(200,77,62,.06)}
+.build-slot{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:500;background:#131813;border:1px solid var(--border-2);color:#fff;padding:8px 14px;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px}
+.build-slot:hover{border-color:var(--error);color:var(--error)}
+.build-pool{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:#0a0d0a;border:1px solid var(--border);min-height:60px;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
+.build-word{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:500;background:#141a13;border:1px solid var(--border-2);color:var(--text);padding:8px 14px;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%);cursor:pointer;transition:all .15s}
+.build-word:hover{border-color:var(--green);background:#1b2216;color:var(--green);transform:translateY(-2px)}
+.build-word.used{opacity:.25;pointer-events:none}
+.listen-btn{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#050705;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:14px 24px;font-weight:600;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%);transition:all .18s;margin-bottom:18px}
+.listen-btn:hover{background:var(--green-br);transform:translateY(-2px)}
+.listen-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.listen-btn.small{padding:10px 16px;font-size:11px}
+.listen-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.listen-ctrl{background:transparent;border:1px solid var(--border-2);color:var(--text);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:9px 14px;font-weight:600;clip-path:polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%);transition:all .18s}
+.listen-ctrl:hover{border-color:var(--green);color:var(--green)}
+.listen-ctrl.on{background:var(--green);color:#050705;border-color:var(--green)}
+.feedback{display:none;border:1px solid var(--border);padding:20px;margin-bottom:20px;clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);animation:intel-in .35s cubic-bezier(.2,.7,.2,1)}
+.feedback.on{display:block}
+.feedback.ok{border-color:var(--green);background:rgba(139,213,45,.06)}
+.feedback.no{border-color:var(--error);background:rgba(200,77,62,.06)}
+.feedback-head{font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.feedback.ok .feedback-head{color:var(--green)}
+.feedback.no .feedback-head{color:var(--error)}
+.feedback-body{font-family:'Rajdhani',sans-serif;font-size:15px;color:var(--text);line-height:1.6;letter-spacing:.02em}
+.feedback-body strong{color:var(--green)}
+.feedback-body .wrong-ans{color:var(--error);text-decoration:line-through}
+.feedback-xp{display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--xp);margin-top:12px;padding:5px 10px;border:1px solid rgba(214,181,60,.3);background:rgba(214,181,60,.06);clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%)}
+.up-actions{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:22px}
+
 .test-list-c{display:grid;gap:12px;max-width:820px;margin:0 auto}
 .test-row-c{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid #1c211a;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%);transition:all .2s}
 .test-row-c:hover{border-color:var(--green-dim)}
 .test-row-c h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:19px;color:#fff;letter-spacing:.04em;margin:6px 0 4px}
 .test-row-c p{color:var(--text-2);font-size:12px}
 
-/* STATS */
 .stats-wrap-c{max-width:1000px;margin:0 auto}
 .stats-grid-c{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}
 .stat-c{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid #1c211a;padding:18px 20px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)}
@@ -382,7 +452,6 @@ input{font-family:inherit}
 .rank-row-c.current .rv{color:var(--green)}
 .rank-row-c.done .rn{color:#fff}
 
-/* AMIRA */
 .amira-wrap-c{max-width:800px;margin:0 auto}
 .amira-panel-c{background:linear-gradient(160deg,#141a13,#0d110d);border:1px solid #1c211a;padding:36px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)}
 .amira-panel-c::before{content:"";position:absolute;top:0;left:0;width:100px;height:1px;background:linear-gradient(90deg,var(--green),transparent)}
@@ -394,7 +463,21 @@ input{font-family:inherit}
 .am-k-c{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.28em;color:var(--text-3);text-transform:uppercase;margin-bottom:8px}
 .am-v-c{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:17px;color:#fff;letter-spacing:.03em;line-height:1.4;margin-bottom:16px}
 
-/* BUTTONS */
+#amiraMsg{position:fixed;inset:0;z-index:9994;background:radial-gradient(ellipse at 50% 50%,rgba(139,213,45,.1),rgba(0,0,0,.95) 70%);display:none;align-items:center;justify-content:center;padding:20px;animation:fadeIn .4s ease}
+#amiraMsg.on{display:flex}
+.am-panel{background:linear-gradient(160deg,#141a13,#0a0d0a);border:1px solid var(--green-dim);max-width:560px;width:100%;padding:38px 34px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%);animation:am-in .5s cubic-bezier(.2,.7,.2,1)}
+.am-panel::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.am-panel::after{content:"";position:absolute;top:0;left:0;width:80px;height:80px;border-top:1px solid var(--green);border-left:1px solid var(--green);opacity:.4;pointer-events:none}
+@keyframes am-in{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:none}}
+.am-head{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:.4em;color:var(--green);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.am-head::before{content:"●";font-size:8px;animation:blink 1.5s infinite}
+.am-icon{width:56px;height:56px;background:rgba(139,213,45,.1);border:1px solid var(--green-dim);color:var(--green);display:grid;place-items:center;margin-bottom:18px;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+.am-icon svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.5}
+.am-title{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:26px;color:#fff;letter-spacing:.04em;line-height:1.15;margin-bottom:14px}
+.am-body{font-family:'Rajdhani',sans-serif;font-size:16px;color:#dfe5d5;line-height:1.7;letter-spacing:.02em;margin-bottom:26px;border-left:2px solid var(--green);padding-left:18px}
+.am-sign{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.28em;color:var(--green);text-transform:uppercase;margin-bottom:24px}
+.am-actions{display:flex;gap:10px;flex-wrap:wrap}
+
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:14px 26px;transition:all .18s;font-weight:600;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
 .btn.primary{background:var(--green);color:#050705;box-shadow:0 0 22px rgba(139,213,45,.25)}
 .btn.primary:hover{background:var(--green-br);box-shadow:0 0 30px rgba(139,213,45,.5);transform:translateY(-2px)}
@@ -403,7 +486,6 @@ input{font-family:inherit}
 .btn.small{padding:9px 18px;font-size:11px;letter-spacing:.18em}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
 
-/* TARGET LOCK */
 #targetLock{position:fixed;inset:0;z-index:9997;background:#050705;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .25s ease}
 #targetLock.on{display:flex;opacity:1}
 .tl-inner{text-align:center;position:relative;z-index:2}
@@ -412,7 +494,7 @@ input{font-family:inherit}
 .tl-name{font-family:'Oswald',sans-serif;font-size:clamp(36px,6vw,64px);color:#fff;letter-spacing:.05em;text-transform:uppercase;line-height:1;margin-bottom:20px;animation:tl-zoom .4s cubic-bezier(.2,.7,.2,1)}
 .tl-init{font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:.34em;color:var(--green);text-transform:uppercase}
 @keyframes tl-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@keyframes tl-zoom{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:scale(1)}}
+@keyframes tl-zoom{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
 .tl-scan{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);box-shadow:0 0 24px var(--green);animation:tl-scan 0.6s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes tl-scan{from{top:100%;opacity:0}20%{opacity:1}to{top:0;opacity:0}}
 .tl-brackets{position:absolute;inset:0;pointer-events:none}
@@ -420,14 +502,14 @@ input{font-family:inherit}
 .tl-brackets::before{top:30px;left:30px;border-right:0;border-bottom:0}
 .tl-brackets::after{bottom:30px;right:30px;border-left:0;border-top:0}
 
-/* TOAST / XP */
-.toast{position:fixed;bottom:30px;right:30px;z-index:5000;background:#0d110d;border:1px solid var(--green);color:var(--green);padding:14px 22px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%);transform:translateY(120%);opacity:0;transition:all .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 30px rgba(139,213,45,.2);display:flex;align-items:center;gap:10px}
+.toast{position:fixed;bottom:30px;right:30px;z-index:10000;background:#0d110d;border:1px solid var(--green);color:var(--green);padding:14px 22px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%);transform:translateY(120%);opacity:0;transition:all .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 30px rgba(139,213,45,.2);display:flex;align-items:center;gap:10px;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
 .toast::before{content:"";width:5px;height:5px;background:var(--green);box-shadow:0 0 8px var(--green)}
-.xp-float{position:fixed;z-index:5000;pointer-events:none;font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:.16em;color:var(--xp);text-transform:uppercase;font-weight:600;animation:xp-rise 1.2s ease forwards}
-@keyframes xp-rise{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-60px)}}
+.toast.error{border-color:var(--error);color:var(--error);box-shadow:0 0 30px rgba(200,77,62,.2)}
+.toast.error::before{background:var(--error);box-shadow:0 0 8px var(--error)}
+.xp-float{position:fixed;z-index:10000;pointer-events:none;font-family:'Oswald',sans-serif;font-size:20px;letter-spacing:.16em;color:var(--xp);text-transform:uppercase;font-weight:600;animation:xp-rise 1.2s ease forwards;text-shadow:0 0 12px rgba(214,181,60,.5)}
+@keyframes xp-rise{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-70px)}}
 
-/* LEVEL UP */
 #levelUp{position:fixed;inset:0;z-index:9996;background:radial-gradient(ellipse at 50% 50%,rgba(139,213,45,.12),#000 70%);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .4s ease}
 #levelUp.on{display:flex;opacity:1}
 .lu-inner{text-align:center;padding:40px}
@@ -436,17 +518,13 @@ input{font-family:inherit}
 .lu-name{font-family:'Rajdhani',sans-serif;font-size:14px;letter-spacing:.34em;color:var(--text-2);text-transform:uppercase;margin-bottom:30px}
 .lu-lvl{font-family:'Oswald',sans-serif;font-size:22px;color:var(--green);letter-spacing:.24em;text-transform:uppercase;margin-bottom:30px;animation:tl-fade .8s}
 
-/* MOBILE NAV */
 .mobileNav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:#080a08;border-top:1px solid #1c211a;padding:8px 4px calc(8px + env(safe-area-inset-bottom));justify-content:space-around}
 .mobileNav button{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--text-3);font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 4px;flex:1;transition:color .18s}
 .mobileNav button svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .mobileNav button.active{color:var(--green)}
 
-/* RESPONSIVE */
-@media (max-width:1200px){
-  .module-grid{grid-template-columns:repeat(2,1fr);max-height:none}
-  .stats-grid-c{grid-template-columns:repeat(2,1fr)}
-}
+@media (max-width:1200px){.module-grid{grid-template-columns:repeat(2,1fr);max-height:none}.stats-grid-c{grid-template-columns:repeat(2,1fr)}.unit-grid{grid-template-columns:repeat(3,1fr)}.ex-list{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:1000px){.quick-actions{grid-template-columns:1fr}}
 @media (max-width:900px){
   .hud-center{display:none}
   .hudbar{padding:12px 18px}
@@ -465,14 +543,21 @@ input{font-family:inherit}
   .gram-token-c .gt-word{font-size:22px}
   .gram-token-c{padding:6px 8px}
   .gram-token-c .gt-tag{font-size:9px;letter-spacing:.18em}
+  .unit-grid{grid-template-columns:1fr 1fr}
+  .ex-list{grid-template-columns:1fr}
 }
 @media (max-width:640px){
   .level-grid{grid-template-columns:repeat(2,1fr)}
   .stats-grid-c{grid-template-columns:1fr}
   .hud-stat:not(.xp){display:none}
-  .hud-right{gap:10px}
+  .hud-right{gap:8px}
   .module-title{font-size:22px}
   .mod-head,.comms-head-c,.listen-head-c,.gram-head-c{flex-direction:column;align-items:flex-start}
+  .unit-grid{grid-template-columns:1fr}
+  .match-grid{grid-template-columns:1fr;gap:10px}
+  .opt{font-size:15px;padding:14px}
+  .up-question{font-size:18px}
+  .am-panel{padding:28px 22px}
 }
 </style>
 </head>
@@ -494,20 +579,17 @@ input{font-family:inherit}
     <div class="boot-tag">DEUTSCH // A1.1</div>
     <div class="boot-title">INITIALIZING<br><span>TRAINING SYSTEM</span></div>
     <div class="boot-bar"><i id="bootBar"></i></div>
-    <div class="boot-row">
-      <span id="bootStage">LOADING MODULES</span>
-      <span class="pct" id="bootPct">0%</span>
-    </div>
+    <div class="boot-row"><span id="bootStage">LOADING MODULES</span><span class="pct" id="bootPct">0%</span></div>
     <div class="boot-log" id="bootLog"></div>
   </div>
-  <button class="boot-skip" id="bootSkip" onclick="skipBoot()">SKIP [ESC]</button>
+  <button class="boot-skip" onclick="skipBoot()">SKIP [ESC]</button>
 </div>
 
 <div id="levelScreen">
   <div class="level-wrap">
     <div class="level-eyebrow">// SELECT TRAINING LEVEL</div>
     <h1 class="level-h1">CHOOSE YOUR <em>OPERATION</em></h1>
-    <p class="level-sub">Wähle dein Deutschniveau — Select your German proficiency tier</p>
+    <p class="level-sub">Wähle dein Deutschniveau</p>
     <div class="level-grid" id="levelGrid"></div>
     <div class="level-foot">A1.1 — B2.2 // CEFR STANDARD</div>
   </div>
@@ -534,6 +616,31 @@ input{font-family:inherit}
   </div>
 </div>
 
+<div id="amiraMsg">
+  <div class="am-panel">
+    <div class="am-head">// TRANSMISSION FROM AMIRA</div>
+    <div class="am-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 6.5L21 10l-5 4.5L17.5 21 12 17.5 6.5 21 8 14.5 3 10l6.5-.5z"/></svg></div>
+    <div class="am-title" id="amTitle">MISSION COMPLETE</div>
+    <div class="am-body" id="amBody">Well done.</div>
+    <div class="am-sign">— AMIRA</div>
+    <div class="am-actions">
+      <button class="btn primary" onclick="closeAmira()">WEITER →</button>
+    </div>
+  </div>
+</div>
+
+<div id="uebPlayer">
+  <div class="up-top">
+    <div class="up-top-l">
+      <button class="up-close" onclick="closeUebPlayer()" title="Schließen"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <div class="up-breadcrumb"><span id="upUnit">START AUF DEUTSCH</span><small id="upCat">WORTSCHATZ</small></div>
+    </div>
+    <div class="up-counter"><b id="upCurrent">1</b> / <span id="upTotal">10</span></div>
+  </div>
+  <div class="up-progress"><i id="upBar"></i></div>
+  <div class="up-body"><div class="up-inner" id="upInner"></div></div>
+</div>
+
 <div id="shell">
   <div class="hudbar">
     <div class="hud-left">
@@ -544,13 +651,13 @@ input{font-family:inherit}
       <span class="hc-tag">OPERATOR <b>ACHREF</b></span>
       <span class="hc-tag">LEVEL <b id="hudLvlNum">01</b></span>
       <span class="hc-tag">RANK <b id="hudRankName">RECRUIT</b></span>
-      <span class="hc-tag">STREAK <b id="hudStreak">5</b>D</span>
+      <span class="hc-tag">STREAK <b id="hudStreak">0</b>D</span>
     </div>
     <div class="hud-right">
-      <div class="hud-stat xp">
-        <b id="hudXp">0</b>
-        <span>XP</span>
-      </div>
+      <div class="hud-stat xp"><b id="hudXp">0</b><span>XP</span></div>
+      <button class="hud-icon-btn danger" onclick="resetAll()" title="Reset All Progress">
+        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1015-6.7"/><path d="M3 4v5h5"/></svg>
+      </button>
       <div class="hud-avatar">A</div>
     </div>
   </div>
@@ -566,18 +673,9 @@ input{font-family:inherit}
             <div class="cmd-sub">SELECT TRAINING MODULE // <span id="cmdLevelTag">A1.1</span></div>
           </div>
           <div class="cmd-hud">
-            <div class="cmd-hud-item">
-              <b id="cmdMissionsDone">0</b>
-              <span>Missions</span>
-            </div>
-            <div class="cmd-hud-item">
-              <b id="cmdWords">0</b>
-              <span>Words</span>
-            </div>
-            <div class="cmd-hud-item xp">
-              <b id="cmdXp">0</b>
-              <span>XP</span>
-            </div>
+            <div class="cmd-hud-item"><b id="cmdMissionsDone">0</b><span>Missions</span></div>
+            <div class="cmd-hud-item"><b id="cmdWords">0</b><span>Words</span></div>
+            <div class="cmd-hud-item xp"><b id="cmdXp">0</b><span>XP</span></div>
           </div>
         </div>
         <div class="module-grid" id="moduleGrid"></div>
@@ -588,32 +686,19 @@ input{font-family:inherit}
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
             <div class="mod-title">MISSION SELECT<small>OPERATIONS // CAMPAIGN</small></div>
           </div>
           <div class="mod-hud">
-            <div class="mod-hud-item">
-              <b id="missionsDone">0 / 12</b>
-              <span>Complete</span>
-            </div>
-            <div class="mod-hud-item xp">
-              <b>+<span id="missionsXpAvailable">0</span></b>
-              <span>XP Avail.</span>
-            </div>
+            <div class="mod-hud-item"><b id="missionsDone">0 / 12</b><span>Complete</span></div>
+            <div class="mod-hud-item xp"><b>+<span id="missionsXpAvailable">0</span></b><span>XP Avail.</span></div>
           </div>
         </div>
         <div class="carousel" id="missionCarousel"></div>
         <div class="carousel-nav">
-          <button class="carousel-btn" onclick="scrollCarousel('missionCarousel', -1)">
-            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
+          <button class="carousel-btn" onclick="scrollCarousel('missionCarousel', -1)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
           <div class="carousel-dots" id="missionDots"></div>
-          <button class="carousel-btn" onclick="scrollCarousel('missionCarousel', 1)">
-            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
+          <button class="carousel-btn" onclick="scrollCarousel('missionCarousel', 1)"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
       </div>
     </section>
@@ -622,32 +707,19 @@ input{font-family:inherit}
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
             <div class="mod-title">INTEL // VOCABULARY<small>FLASHCARDS // INTEL FILES</small></div>
           </div>
           <div class="mod-hud">
-            <div class="mod-hud-item">
-              <b id="intelProgressText">01 / 10</b>
-              <span>File</span>
-            </div>
-            <div class="mod-hud-item xp">
-              <b>+<span id="intelXpAvailable">0</span></b>
-              <span>XP Avail.</span>
-            </div>
+            <div class="mod-hud-item"><b id="intelProgressText">00 / 10</b><span>File</span></div>
+            <div class="mod-hud-item xp"><b>+<span id="intelXpAvailable">0</span></b><span>XP Avail.</span></div>
           </div>
         </div>
         <div class="carousel" id="intelCarousel" style="padding-left:calc(50% - 210px);padding-right:calc(50% - 210px)"></div>
         <div class="carousel-nav">
-          <button class="carousel-btn" onclick="scrollCarousel('intelCarousel', -1)">
-            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
+          <button class="carousel-btn" onclick="scrollCarousel('intelCarousel', -1)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
           <div class="carousel-dots" id="intelDots"></div>
-          <button class="carousel-btn" onclick="scrollCarousel('intelCarousel', 1)">
-            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
+          <button class="carousel-btn" onclick="scrollCarousel('intelCarousel', 1)"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
       </div>
     </section>
@@ -656,21 +728,12 @@ input{font-family:inherit}
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
             <div class="mod-title">SIGNAL INTERCEPT<small>LISTENING // AUDIO DECODE</small></div>
           </div>
           <div class="mod-hud">
-            <div class="mod-hud-item">
-              <b id="listenCount">01 / 05</b>
-              <span>Signal</span>
-            </div>
-            <div class="mod-hud-item xp">
-              <b>+15</b>
-              <span>Per Decode</span>
-            </div>
+            <div class="mod-hud-item"><b id="listenCount">00 / 05</b><span>Signal</span></div>
+            <div class="mod-hud-item xp"><b>+15</b><span>Per Decode</span></div>
           </div>
         </div>
         <div class="carousel" id="listenCarousel" style="padding-bottom:12px"></div>
@@ -679,9 +742,7 @@ input{font-family:inherit}
             <div class="listen-head-c">
               <div class="listen-head-l-c">
                 <div class="listen-rec-c"></div>
-                <div class="listen-status-c" id="listenStatus">
-                  SIGNAL: <b>LOCKED</b> // <span id="listenCode">INT-01</span>
-                </div>
+                <div class="listen-status-c" id="listenStatus">SIGNAL: <b>LOCKED</b> // <span id="listenCode">INT-01</span></div>
               </div>
               <div class="listen-status-c" id="listenName">SELF INTRODUCTION</div>
             </div>
@@ -693,27 +754,15 @@ input{font-family:inherit}
                 <span id="listenDur">00:10</span>
               </div>
               <div class="listen-controls-c">
-                <button class="listen-ctrl-c primary" id="listenPlay" onclick="playTransmission()">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor" stroke="none"/></svg>
-                  PLAY
-                </button>
-                <button class="listen-ctrl-c" onclick="replayTransmission()">
-                  <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1015-6.7"/><path d="M3 4v5h5"/></svg>
-                  REPLAY
-                </button>
-                <button class="listen-ctrl-c" onclick="toggleTranscript()">
-                  <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                  TRANSCRIPT
-                </button>
+                <button class="listen-ctrl-c primary" id="listenPlay" onclick="playTransmission()"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor" stroke="none"/></svg>PLAY</button>
+                <button class="listen-ctrl-c" onclick="replayTransmission()"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1015-6.7"/><path d="M3 4v5h5"/></svg>REPLAY</button>
+                <button class="listen-ctrl-c" onclick="toggleTranscript()"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>TRANSCRIPT</button>
               </div>
             </div>
             <div class="transcript-c" id="listenTranscript">
               <div class="transcript-label-c">DECODED TRANSMISSION</div>
               <div class="transcript-de-c" id="listenDe">—</div>
-              <div class="transcript-fr-c">
-                <span class="t-lbl">// FRENCH TRANSLATION</span>
-                <span id="listenFr">—</span>
-              </div>
+              <div class="transcript-fr-c"><span class="t-lbl">// FRENCH</span><span id="listenFr">—</span></div>
             </div>
           </div>
         </div>
@@ -724,21 +773,12 @@ input{font-family:inherit}
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
             <div class="mod-title">GRAMMAR BRIEFING<small>STRUCTURE // DECRYPT</small></div>
           </div>
           <div class="mod-hud">
-            <div class="mod-hud-item">
-              <b id="gramCode">GR-01</b>
-              <span>Briefing</span>
-            </div>
-            <div class="mod-hud-item xp">
-              <b>+20</b>
-              <span>Per Topic</span>
-            </div>
+            <div class="mod-hud-item"><b id="gramCode">GR-01</b><span>Briefing</span></div>
+            <div class="mod-hud-item xp"><b>+20</b><span>Per Topic</span></div>
           </div>
         </div>
         <div class="carousel" id="gramCarousel" style="padding-bottom:12px"></div>
@@ -750,17 +790,10 @@ input{font-family:inherit}
                 <div class="gr-name-c" id="gramName">PERSONAL PRONOUNS</div>
               </div>
             </div>
-            <div class="gram-sentence-c">
-              <div class="gram-tokens-c" id="gramTokens"></div>
-            </div>
-            <div class="gram-intel-c" id="gramIntel">
-              <div class="gi-hint">TAP A TOKEN TO DECRYPT</div>
-            </div>
+            <div class="gram-sentence-c"><div class="gram-tokens-c" id="gramTokens"></div></div>
+            <div class="gram-intel-c" id="gramIntel"><div class="gi-hint">TAP A TOKEN TO DECRYPT</div></div>
             <div class="listen-controls-c" style="margin-top:20px">
-              <button class="listen-ctrl-c" onclick="speakGrammar()">
-                <svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 8a6 6 0 010 8"/></svg>
-                PLAY SENTENCE
-              </button>
+              <button class="listen-ctrl-c" onclick="speakGrammar()"><svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 8a6 6 0 010 8"/></svg>PLAY SENTENCE</button>
               <button class="listen-ctrl-c primary" onclick="completeGrammar()">MARK UNDERSTOOD +20 XP</button>
             </div>
           </div>
@@ -768,38 +801,36 @@ input{font-family:inherit}
       </div>
     </section>
 
-    <section class="view" id="view-training" data-view="training">
+    <section class="view" id="view-uebungen" data-view="uebungen">
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
-            <div class="mod-title">WEAPONS TRAINING<small>DRILL // LIVE EXERCISES</small></div>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+            <div class="mod-title">ÜBUNGEN<small>TRAINIERE DEIN DEUTSCH</small></div>
           </div>
           <div class="mod-hud">
-            <div class="mod-hud-item">
-              <b id="exScoreDisplay">0 / 0</b>
-              <span>Score</span>
-            </div>
-            <div class="mod-hud-item xp">
-              <b>+25</b>
-              <span>Per Hit</span>
-            </div>
+            <div class="mod-hud-item"><b id="uebStatDone">0 / 0</b><span>Erledigt</span></div>
+            <div class="mod-hud-item"><b id="uebStatCorrect">0%</b><span>Richtig</span></div>
+            <div class="mod-hud-item xp"><b id="uebStatXp">0</b><span>XP</span></div>
           </div>
         </div>
-        <div class="ex-wrap-c">
-          <div class="ex-card-c" id="exCard">
-            <div class="ex-num-c" id="exNum">EXERCISE 01</div>
-            <div class="ex-q-c" id="exQ">Wie ___ du?</div>
-            <div class="ex-opts-c" id="exOpts"></div>
-            <div class="ex-result-c" id="exResult"></div>
-            <div style="display:flex;justify-content:flex-end;margin-top:20px">
-              <button class="btn primary small" id="exNext" style="display:none" onclick="nextExercise()">NEXT TARGET →</button>
-            </div>
-          </div>
+        <div class="ueb-stats">
+          <div class="ueb-stat"><b id="uebStatProgress">0%</b><span>Fortschritt</span></div>
+          <div class="ueb-stat green"><b id="uebStatUnit">Start</b><span>Aktuelle Einheit</span></div>
         </div>
+        <div class="ueb-progress"><i id="uebGlobalBar"></i></div>
+        <div class="ueb-sec-head"><h2>EINHEITEN</h2><span class="sec-meta">7 MODULE</span></div>
+        <div class="unit-grid" id="unitGrid"></div>
+        <div class="ueb-sec-head"><h2>SCHNELLZUGRIFF</h2><span class="sec-meta">QUICK ACCESS</span></div>
+        <div class="quick-actions">
+          <button class="qa" onclick="startDaily()"><div class="qa-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10"/><circle cx="12" cy="17" r="4"/><path d="M5 8a10 10 0 0114 0"/></svg></div><div class="qa-body"><div class="qa-title">Übung des Tages</div><div class="qa-sub">7 neue Übungen</div></div></button>
+          <button class="qa" onclick="startRandomUeb()"><div class="qa-icon"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></div><div class="qa-body"><div class="qa-title">Zufällige Übung</div><div class="qa-sub">5 neue Übungen</div></div></button>
+          <button class="qa" onclick="startErrorsReview()"><div class="qa-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10"/><circle cx="12" cy="17" r="4"/><path d="M12 3l3 3-3 3"/></svg></div><div class="qa-body"><div class="qa-title">Meine Fehler</div><div class="qa-sub" id="errorsCount">0 Fehler</div></div></button>
+        </div>
+        <div class="ueb-sec-head"><h2 id="uebExHeadTitle">START AUF DEUTSCH</h2><button class="btn primary small" onclick="startUnitUeb()" style="padding:8px 16px;font-size:11px;">Einheit starten →</button></div>
+        <div class="ex-list" id="uebExList"></div>
+        <div class="ueb-sec-head"><h2>MEINE FEHLER</h2><span class="sec-meta">REVIEW</span></div>
+        <div class="errors-list" id="uebErrorsList"></div>
       </div>
     </section>
 
@@ -807,18 +838,10 @@ input{font-family:inherit}
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
             <div class="mod-title">COMMS CHANNEL<small>SECURE // CH-01</small></div>
           </div>
-          <div class="mod-hud">
-            <div class="mod-hud-item xp">
-              <b>+50</b>
-              <span>Per Trans.</span>
-            </div>
-          </div>
+          <div class="mod-hud"><div class="mod-hud-item xp"><b>+50</b><span>Per Trans.</span></div></div>
         </div>
         <div class="comms-wrap-c">
           <div class="comms-panel-c">
@@ -826,22 +849,13 @@ input{font-family:inherit}
               <div class="comms-ch-c">COMMS CHANNEL 01</div>
               <div class="comms-freq-c">FREQ 87.5 // SECURE</div>
             </div>
-            <div class="comms-prompt-c">
-              <strong>MISSION // INTRODUCE YOURSELF</strong>
-              Hallo.<br>
-              Ich heiße Achref.<br>
-              Ich komme aus Tunesien.<br>
-              Ich wohne in ...
-            </div>
+            <div class="comms-prompt-c"><strong>MISSION // INTRODUCE YOURSELF</strong>Hallo.<br>Ich heiße Achref.<br>Ich komme aus Tunesien.<br>Ich wohne in ...</div>
             <div class="waveform-c idle" id="waveform"></div>
             <div class="comms-actions-c">
               <button class="btn primary" id="recordBtn" onclick="toggleRecording()">◉ START TRANSMISSION</button>
               <button class="btn ghost" onclick="speakExample()">▶ PLAY EXAMPLE</button>
             </div>
-            <div class="comms-status-c" id="commsStatus">
-              <span>STATUS: <b>STANDBY</b></span>
-              <span id="recTimer">00:00</span>
-            </div>
+            <div class="comms-status-c" id="commsStatus"><span>STATUS: <b>STANDBY</b></span><span id="recTimer">00:00</span></div>
             <div id="recordOutput" style="margin-top:14px"></div>
           </div>
         </div>
@@ -852,35 +866,19 @@ input{font-family:inherit}
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
             <div class="mod-title">OPERATIONS // TESTS<small>FIELD EXAMINATION</small></div>
           </div>
-          <div class="mod-hud">
-            <div class="mod-hud-item">
-              <b>0 / 2</b>
-              <span>Passed</span>
-            </div>
-          </div>
+          <div class="mod-hud"><div class="mod-hud-item"><b>0 / 2</b><span>Passed</span></div></div>
         </div>
         <div class="test-list-c">
           <div class="test-row-c">
-            <div>
-              <span class="pill" style="font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--green);border:1px solid var(--green-dim);padding:4px 10px;background:rgba(139,213,45,.05);clip-path:polygon(0 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%)">OPERATION 01</span>
-              <h3>MINI-TEST // LEKTION 1</h3>
-              <p>10 Fragen · Wortschatz &amp; Grammatik</p>
-            </div>
-            <button class="btn primary small" onclick="startTest(1)">DEPLOY →</button>
+            <div><span class="pill" style="font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--green);border:1px solid var(--green-dim);padding:4px 10px;background:rgba(139,213,45,.05);clip-path:polygon(0 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%)">OPERATION 01</span><h3>MINI-TEST // START</h3><p>Alle Start-Übungen</p></div>
+            <button class="btn primary small" onclick="startTestUeb('start')">DEPLOY →</button>
           </div>
           <div class="test-row-c">
-            <div>
-              <span class="pill" style="font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--green);border:1px solid var(--green-dim);padding:4px 10px;background:rgba(139,213,45,.05);clip-path:polygon(0 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%)">OPERATION A1.1</span>
-              <h3>FULL REVIEW TEST</h3>
-              <p>20 Fragen · Gesamtwiederholung</p>
-            </div>
-            <button class="btn primary small" onclick="startTest(2)">DEPLOY →</button>
+            <div><span class="pill" style="font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--green);border:1px solid var(--green-dim);padding:4px 10px;background:rgba(139,213,45,.05);clip-path:polygon(0 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%)">OPERATION A1.1</span><h3>FULL REVIEW TEST</h3><p>Fit für die Einheit</p></div>
+            <button class="btn primary small" onclick="startTestUeb('fit')">DEPLOY →</button>
           </div>
         </div>
       </div>
@@ -890,46 +888,26 @@ input{font-family:inherit}
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
             <div class="mod-title">OPERATOR STATS<small>PERFORMANCE // MATRIX</small></div>
           </div>
-          <div class="mod-hud">
-            <div class="mod-hud-item">
-              <b id="statsLvlName">RECRUIT</b>
-              <span>Rank</span>
-            </div>
-          </div>
+          <div class="mod-hud"><div class="mod-hud-item"><b id="statsLvlName">RECRUIT</b><span>Rank</span></div></div>
         </div>
         <div class="stats-wrap-c">
           <div class="stats-grid-c">
-            <div class="stat-c">
-              <div class="k">COURSE PROGRESS</div>
-              <div class="v" id="statsCourse">0<small>%</small></div>
-            </div>
-            <div class="stat-c">
-              <div class="k">VOCABULARY</div>
-              <div class="v" id="statsWords">0</div>
-            </div>
-            <div class="stat-c">
-              <div class="k">TESTS PASSED</div>
-              <div class="v">0<small>/ 2</small></div>
-            </div>
-            <div class="stat-c">
-              <div class="k">TOTAL XP</div>
-              <div class="v" id="statsXp">0</div>
-            </div>
+            <div class="stat-c"><div class="k">COURSE PROGRESS</div><div class="v" id="statsCourse">0<small>%</small></div></div>
+            <div class="stat-c"><div class="k">VOCABULARY</div><div class="v" id="statsWords">0</div></div>
+            <div class="stat-c"><div class="k">TESTS PASSED</div><div class="v">0<small>/ 2</small></div></div>
+            <div class="stat-c"><div class="k">TOTAL XP</div><div class="v" id="statsXp">0</div></div>
           </div>
           <div class="progress-block-c">
             <div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.2em;color:#fff;text-transform:uppercase;margin-bottom:16px">// SKILL MATRIX</div>
-            <div class="progress-row-c"><div class="pr-label">Reading</div><div class="pr-track"><i style="width:60%"></i></div><div class="pr-val">60%</div></div>
-            <div class="progress-row-c"><div class="pr-label">Listening</div><div class="pr-track"><i style="width:45%"></i></div><div class="pr-val">45%</div></div>
-            <div class="progress-row-c"><div class="pr-label">Writing</div><div class="pr-track"><i style="width:35%"></i></div><div class="pr-val">35%</div></div>
-            <div class="progress-row-c"><div class="pr-label">Speaking</div><div class="pr-track"><i style="width:30%"></i></div><div class="pr-val">30%</div></div>
-            <div class="progress-row-c"><div class="pr-label">Vocabulary</div><div class="pr-track"><i style="width:70%"></i></div><div class="pr-val">70%</div></div>
-            <div class="progress-row-c"><div class="pr-label">Grammar</div><div class="pr-track"><i style="width:55%"></i></div><div class="pr-val">55%</div></div>
+            <div class="progress-row-c"><div class="pr-label">Reading</div><div class="pr-track"><i style="width:0%"></i></div><div class="pr-val">0%</div></div>
+            <div class="progress-row-c"><div class="pr-label">Listening</div><div class="pr-track"><i style="width:0%"></i></div><div class="pr-val">0%</div></div>
+            <div class="progress-row-c"><div class="pr-label">Writing</div><div class="pr-track"><i style="width:0%"></i></div><div class="pr-val">0%</div></div>
+            <div class="progress-row-c"><div class="pr-label">Speaking</div><div class="pr-track"><i style="width:0%"></i></div><div class="pr-val">0%</div></div>
+            <div class="progress-row-c"><div class="pr-label">Vocabulary</div><div class="pr-track"><i style="width:0%"></i></div><div class="pr-val">0%</div></div>
+            <div class="progress-row-c"><div class="pr-label">Grammar</div><div class="pr-track"><i style="width:0%"></i></div><div class="pr-val">0%</div></div>
           </div>
           <div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.2em;color:#fff;text-transform:uppercase;margin-bottom:16px">// RANK PROGRESSION</div>
           <div class="rank-table-c" id="rankTable"></div>
@@ -941,10 +919,7 @@ input{font-family:inherit}
       <div class="view-scroll">
         <div class="mod-head">
           <div class="mod-head-l">
-            <button class="back-btn" onclick="goBack()">
-              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              Back
-            </button>
+            <button class="back-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
             <div class="mod-title">PRIVATE OPERATION<small>FROM AMIRA // ENCRYPTED</small></div>
           </div>
         </div>
@@ -952,11 +927,7 @@ input{font-family:inherit}
           <div class="amira-panel-c">
             <div class="amira-tag-c">// TRANSMISSION RECEIVED</div>
             <h3 class="amira-title-c">FROM AMIRA</h3>
-            <div class="amira-body-c">
-              <em>MESSAGE</em>
-              Du schaffst das.<br>
-              Heute nur 15 Minuten. Aber jeden Tag. 🇩🇪
-            </div>
+            <div class="amira-body-c"><em>MESSAGE</em>Du schaffst das.<br>Heute nur 15 Minuten. Aber jeden Tag. 🇩🇪</div>
             <div class="amira-mission-c">
               <div class="am-k-c">TODAY'S MISSION</div>
               <div class="am-v-c">Sprich auf Deutsch über 3 Dinge, die du heute gemacht hast.</div>
@@ -971,169 +942,230 @@ input{font-family:inherit}
 </div>
 
 <div class="mobileNav" id="mobileNav">
-  <button onclick="enterModule('missions')">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
-    Missions
-  </button>
-  <button onclick="enterModule('intel')">
-    <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/></svg>
-    Intel
-  </button>
-  <button onclick="enterModule('listening')">
-    <svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 8a6 6 0 010 8"/></svg>
-    Intercept
-  </button>
-  <button onclick="enterModule('grammar')">
-    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/></svg>
-    Grammar
-  </button>
-  <button onclick="enterModule('stats')">
-    <svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>
-    Stats
-  </button>
+  <button onclick="enterModule('command')" class="active"><svg viewBox="0 0 24 24"><path d="M3 12L12 4l9 8"/><path d="M5 10v10h14V10"/></svg>HQ</button>
+  <button onclick="enterModule('missions')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Missions</button>
+  <button onclick="enterModule('uebungen')"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Übungen</button>
+  <button onclick="enterModule('listening')"><svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 8a6 6 0 010 8"/></svg>Intercept</button>
+  <button onclick="enterModule('stats')"><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Stats</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-/* ============================================
+/* ============================================================
    DATA
-   ============================================ */
+   ============================================================ */
 const LEVELS = ['A1.1','A1.2','A2.1','A2.2','B1.1','B1.2','B2.1','B2.2'];
-
 const RANKS = [
-  {lvl:1, name:'RECRUIT', xp:0},
-  {lvl:2, name:'TRAINEE', xp:100},
-  {lvl:3, name:'PRIVATE', xp:250},
-  {lvl:4, name:'SPECIALIST', xp:450},
-  {lvl:5, name:'CORPORAL', xp:700},
-  {lvl:6, name:'SERGEANT', xp:1000},
-  {lvl:7, name:'OPERATOR', xp:1350},
-  {lvl:8, name:'VETERAN', xp:1750},
-  {lvl:9, name:'ELITE', xp:2200},
+  {lvl:1, name:'RECRUIT', xp:0},{lvl:2, name:'TRAINEE', xp:100},{lvl:3, name:'PRIVATE', xp:250},
+  {lvl:4, name:'SPECIALIST', xp:450},{lvl:5, name:'CORPORAL', xp:700},{lvl:6, name:'SERGEANT', xp:1000},
+  {lvl:7, name:'OPERATOR', xp:1350},{lvl:8, name:'VETERAN', xp:1750},{lvl:9, name:'ELITE', xp:2200},
   {lvl:10, name:'A1.1 GRADUATE', xp:2700}
 ];
 
 const MISSIONS = [
-  {n:1, title:'Hallo!', code:'OP-01', desc:'First contact. Greet and introduce yourself.', xp:120},
-  {n:2, title:'Personen', code:'OP-02', desc:'Talk about people and personal data.', xp:150},
-  {n:3, title:'Zahlen', code:'OP-03', desc:'Numbers and basic information.', xp:150},
-  {n:4, title:'Lernen', code:'OP-04', desc:'Guided revision and practice.', xp:180},
-  {n:5, title:'Familie', code:'OP-05', desc:'Talk about your family.', xp:200},
-  {n:6, title:'Freizeit', code:'OP-06', desc:'Hobbies and free time.', xp:200},
-  {n:7, title:'Alltag', code:'OP-07', desc:'Describe a simple day.', xp:220},
-  {n:8, title:'Unterwegs', code:'OP-08', desc:'Simple movement situations.', xp:220},
-  {n:9, title:'Essen', code:'OP-09', desc:'Food vocabulary.', xp:240},
-  {n:10,title:'Wohnen', code:'OP-10', desc:'Talk about housing.', xp:240},
-  {n:11,title:'Wiederholung', code:'OP-11', desc:'Review key points.', xp:260},
-  {n:12,title:'Abschluss', code:'OP-12', desc:'Prepare for the final test.', xp:300}
+  {n:1,title:'Hallo!',code:'OP-01',desc:'First contact. Greet and introduce yourself.',xp:120,unit:'start'},
+  {n:2,title:'Personen',code:'OP-02',desc:'Talk about people and personal data.',xp:150,unit:'e1'},
+  {n:3,title:'Zahlen',code:'OP-03',desc:'Numbers and basic information.',xp:150,unit:'e2'},
+  {n:4,title:'Lernen',code:'OP-04',desc:'Guided revision and practice.',xp:180,unit:'e3'},
+  {n:5,title:'Familie',code:'OP-05',desc:'Talk about your family.',xp:200,unit:'station1'},
+  {n:6,title:'Freizeit',code:'OP-06',desc:'Hobbies and free time.',xp:200,unit:'e4'},
+  {n:7,title:'Alltag',code:'OP-07',desc:'Describe a simple day.',xp:220,unit:'fit'},
+  {n:8,title:'Unterwegs',code:'OP-08',desc:'Simple movement situations.',xp:220,unit:'fit'},
+  {n:9,title:'Essen',code:'OP-09',desc:'Food vocabulary.',xp:240,unit:'fit'},
+  {n:10,title:'Wohnen',code:'OP-10',desc:'Talk about housing.',xp:240,unit:'fit'},
+  {n:11,title:'Wiederholung',code:'OP-11',desc:'Review key points.',xp:260,unit:'fit'},
+  {n:12,title:'Abschluss',code:'OP-12',desc:'Prepare for the final test.',xp:300,unit:'fit'}
 ];
 
-const VOCAB = [
-  ['Hallo','Bonjour'],['Danke','Merci'],['Bitte','S\'il vous plaît'],['Tschüss','Au revoir'],
-  ['heißen','s\'appeler'],['lernen','apprendre'],['sprechen','parler'],['lesen','lire'],
-  ['hören','écouter'],['schreiben','écrire']
-];
-
-const EXERCISES = [
-  {q:'Wie ___ du?', a:['heiße','heißt','heißen'], correct:1},
-  {q:'Ich ___ aus Tunesien.', a:['komme','kommst','kommen'], correct:0},
-  {q:'___ heißt du?', a:['Wie','Wo','Wer'], correct:0},
-  {q:'Ich ___ Achref.', a:['heiße','heißt','heißen'], correct:0},
-  {q:'Was ___ du?', a:['machst','machen','macht'], correct:0},
-  {q:'Ich ___ Deutsch.', a:['lerne','lernst','lernen'], correct:0},
-  {q:'Woher ___ du?', a:['kommst','kommt','kommen'], correct:0},
-  {q:'Er ___ Achref.', a:['heißt','heiße','heißen'], correct:0}
-];
+const VOCAB = [['Hallo','Bonjour'],['Danke','Merci'],['Bitte','S\'il vous plaît'],['Tschüss','Au revoir'],['heißen','s\'appeler'],['lernen','apprendre'],['sprechen','parler'],['lesen','lire'],['hören','écouter'],['schreiben','écrire']];
 
 const LISTENING = [
-  {code:'INT-01', name:'SELF INTRODUCTION', german:'Hallo. Ich heiße Achref. Ich komme aus Tunesien. Ich wohne in Sousse.', french:'Bonjour. Je m\'appelle Achref. Je viens de Tunisie. J\'habite à Sousse.', duration:10},
-  {code:'INT-02', name:'DAILY ROUTINE', german:'Ich stehe um sieben Uhr auf. Ich frühstücke und ich arbeite.', french:'Je me lève à sept heures. Je prends le petit-déjeuner et je travaille.', duration:8},
-  {code:'INT-03', name:'AT THE CAFÉ', german:'Guten Tag. Ich möchte einen Kaffee und ein Brot, bitte.', french:'Bonjour. Je voudrais un café et un pain, s\'il vous plaît.', duration:8},
-  {code:'INT-04', name:'ASKING DIRECTIONS', german:'Entschuldigung, wo ist der Bahnhof? Ist er links oder rechts?', french:'Excusez-moi, où est la gare? Est-elle à gauche ou à droite?', duration:9},
-  {code:'INT-05', name:'MY FAMILY', german:'Meine Familie ist klein. Mein Vater, meine Mutter und mein Bruder.', french:'Ma famille est petite. Mon père, ma mère et mon frère.', duration:9}
+  {code:'INT-01',name:'SELF INTRODUCTION',german:'Hallo. Ich heiße Achref. Ich komme aus Tunesien. Ich wohne in Sousse.',french:'Bonjour. Je m\'appelle Achref. Je viens de Tunisie. J\'habite à Sousse.',duration:10},
+  {code:'INT-02',name:'DAILY ROUTINE',german:'Ich stehe um sieben Uhr auf. Ich frühstücke und ich arbeite.',french:'Je me lève à sept heures. Je prends le petit-déjeuner et je travaille.',duration:8},
+  {code:'INT-03',name:'AT THE CAFÉ',german:'Guten Tag. Ich möchte einen Kaffee und ein Brot, bitte.',french:'Bonjour. Je voudrais un café et un pain, s\'il vous plaît.',duration:8},
+  {code:'INT-04',name:'ASKING DIRECTIONS',german:'Entschuldigung, wo ist der Bahnhof? Ist er links oder rechts?',french:'Excusez-moi, où est la gare? Est-elle à gauche ou à droite?',duration:9},
+  {code:'INT-05',name:'MY FAMILY',german:'Meine Familie ist klein. Mein Vater, meine Mutter und mein Bruder.',french:'Ma famille est petite. Mon père, ma mère et mon frère.',duration:9}
 ];
 
 const GRAMMAR = [
-  {code:'GR-01', topic:'PERSONAL PRONOUNS', sentence:['Ich','heiße','Achref'], tags:['SUBJECT','VERB','NAME'],
-    intel:{
-      'Ich':'<em>I</em> — 1st person singular. In German, "ich" is always lowercase except at the start of a sentence.',
-      'heiße':'<em>to be called</em> — 1st person singular of "heißen". Regular verb: ich heiße, du heißt, er/sie heißt.',
-      'Achref':'<em>proper noun</em> — All nouns and names in German are capitalized, even mid-sentence.'
-    }},
-  {code:'GR-02', topic:'YES/NO QUESTIONS', sentence:['Kommst','du','aus','Tunesien'], tags:['VERB','SUBJECT','PREP','PLACE'],
-    intel:{
-      'Kommst':'<em>come</em> — In yes/no questions, the verb goes first. "Kommst" is the "du" form of "kommen".',
-      'du':'<em>you</em> — 2nd person singular informal. Used with friends, family, and peers.',
-      'aus':'<em>from</em> — Fixed preposition used with "kommen" for origin.',
-      'Tunesien':'<em>Tunisia</em> — Country name. No article needed after "aus" for most countries.'
-    }},
-  {code:'GR-03', topic:'W-FRAGEN (W-QUESTIONS)', sentence:['Wie','heißt','du'], tags:['W-WORD','VERB','SUBJECT'],
-    intel:{
-      'Wie':'<em>how</em> — W-question word. Used in "Wie heißt du?" (literally "How are you called?").',
-      'heißt':'<em>are called</em> — 3rd person singular of "heißen".',
-      'du':'<em>you</em> — Subject goes after the verb in W-questions.'
-    }},
-  {code:'GR-04', topic:'DEFINITE ARTICLES', sentence:['Der','Mann','ist','hier'], tags:['ARTICLE','NOUN','VERB','ADVERB'],
-    intel:{
-      'Der':'<em>the (masc.)</em> — Definite article for masculine nouns in nominative.',
-      'Mann':'<em>man</em> — Masculine noun. Always capitalized in German.',
-      'ist':'<em>is</em> — 3rd person singular of "sein".',
-      'hier':'<em>here</em> — Adverb of place. Comes at the end in simple statements.'
-    }},
-  {code:'GR-05', topic:'PRESENT TENSE VERBS', sentence:['Ich','lerne','Deutsch'], tags:['SUBJECT','VERB','OBJECT'],
-    intel:{
-      'Ich':'<em>I</em> — Subject pronoun. The verb must agree with it.',
-      'lerne':'<em>learn</em> — Regular ending for "ich" is "-e".',
-      'Deutsch':'<em>German (language)</em> — Languages are neuter nouns and always capitalized.'
-    }}
+  {code:'GR-01',topic:'PERSONAL PRONOUNS',sentence:['Ich','heiße','Achref'],tags:['SUBJECT','VERB','NAME'],intel:{'Ich':'<em>I</em> — 1st person singular.','heiße':'<em>to be called</em> — 1st person singular of "heißen".','Achref':'<em>proper noun</em> — Always capitalized.'}},
+  {code:'GR-02',topic:'YES/NO QUESTIONS',sentence:['Kommst','du','aus','Tunesien'],tags:['VERB','SUBJECT','PREP','PLACE'],intel:{'Kommst':'<em>come</em> — Verb goes first in yes/no questions.','du':'<em>you</em> — 2nd person singular informal.','aus':'<em>from</em> — Used with "kommen" for origin.','Tunesien':'<em>Tunisia</em> — Country name.'}},
+  {code:'GR-03',topic:'W-FRAGEN',sentence:['Wie','heißt','du'],tags:['W-WORD','VERB','SUBJECT'],intel:{'Wie':'<em>how</em> — W-question word.','heißt':'<em>are called</em> — 3rd person singular.','du':'<em>you</em> — Subject after verb.'}},
+  {code:'GR-04',topic:'DEFINITE ARTICLES',sentence:['Der','Mann','ist','hier'],tags:['ARTICLE','NOUN','VERB','ADVERB'],intel:{'Der':'<em>the (masc.)</em>','Mann':'<em>man</em> — Always capitalized.','ist':'<em>is</em> — 3rd person singular of "sein".','hier':'<em>here</em> — Adverb of place.'}},
+  {code:'GR-05',topic:'PRESENT TENSE',sentence:['Ich','lerne','Deutsch'],tags:['SUBJECT','VERB','OBJECT'],intel:{'Ich':'<em>I</em> — Subject pronoun.','lerne':'<em>learn</em> — Regular ending for "ich" is "-e".','Deutsch':'<em>German</em> — Languages always capitalized.'}}
+];
+
+const UNITS = [
+  {id:'start',num:'MOD-01',title:'Start auf Deutsch',sub:'Erste Wörter, Bilder und Töne',tag:'START'},
+  {id:'e1',num:'MOD-02',title:'Einheit 1',sub:'Kaffee oder Tee?',tag:'E1'},
+  {id:'e2',num:'MOD-03',title:'Einheit 2',sub:'Sprache im Kurs',tag:'E2'},
+  {id:'e3',num:'MOD-04',title:'Einheit 3',sub:'Städte — Länder — Sprachen',tag:'E3'},
+  {id:'station1',num:'MOD-05',title:'Station 1',sub:'Berufe, Grüße und Regionen',tag:'ST1'},
+  {id:'e4',num:'MOD-06',title:'Einheit 4',sub:'Menschen und Häuser',tag:'E4'},
+  {id:'fit',num:'MOD-07',title:'Fit für die Einheit',sub:'Tests pro Einheit',tag:'FIT'}
+];
+
+const EX = [
+  {id:'sd-01',unit:'start',cat:'Wortschatz',type:'mc',q:'Was ist das? 🍕',opts:['Musik','Pizza','Computer','Telefon'],correct:1,exp:'„Pizza" ist ein internationales Wort.',xp:10},
+  {id:'sd-02',unit:'start',cat:'Wortschatz',type:'mc',q:'Was ist das? 💻',opts:['Computer','Restaurant','Supermarkt','Büro'],correct:0,exp:'„der Computer" ist ein internationales Wort.',xp:10},
+  {id:'sd-03',unit:'start',cat:'Wortschatz',type:'match',q:'Ordne die Wörter den Bildern zu.',pairs:[{a:'Musik',b:'🎵'},{a:'Telefon',b:'📱'},{a:'Restaurant',b:'🍽️'},{a:'Supermarkt',b:'🛒'},{a:'Büro',b:'🏢'}],exp:'Internationale Begriffe.',xp:15},
+  {id:'sd-04',unit:'start',cat:'Hören',type:'listen',q:'Hör zu: Was bedeutet das?',audio:'Pizza und Musik.',opts:['Pizza und Musik','Computer und Büro','Restaurant und Kaffee'],correct:0,exp:'„Pizza und Musik" — zwei internationale Wörter.',xp:15},
+  {id:'sd-05',unit:'start',cat:'Wortschatz',type:'mc',q:'Was ist das? ☕',opts:['Kaffee','Tee','Wasser','Saft'],correct:0,exp:'„der Kaffee" — ein internationales Wort.',xp:10},
+  {id:'sd-06',unit:'start',cat:'Hören',type:'listen',q:'Woher kommt die Person?',audio:'Ich komme aus Deutschland.',opts:['Frankreich','Deutschland','Tunesien','Österreich'],correct:1,exp:'„aus" + Land = Herkunft.',xp:15},
+
+  {id:'e1-01',unit:'e1',cat:'Wortschatz',type:'mc',q:'Im Café: Was möchten Sie trinken? ☕',opts:['Ich möchte einen Kaffee, bitte.','Ich wohne in Berlin.','Ich bin 20 Jahre.','Ich heiße Anna.'],correct:0,exp:'Bestellung: „Ich möchte … , bitte."',xp:10},
+  {id:'e1-02',unit:'e1',cat:'Grammatik',type:'blank',q:'Ich ___ einen Kaffee, bitte.',opts:['möchte','möchtest','möchten'],correct:0,exp:'ich möchte — 1. Person Singular.',xp:15},
+  {id:'e1-03',unit:'e1',cat:'Wortschatz',type:'match',q:'Ordne zu: Heiß oder kalt?',pairs:[{a:'Kaffee',b:'heiß'},{a:'Eiskaffee',b:'kalt'},{a:'Tee',b:'heiß'},{a:'Eistee',b:'kalt'},{a:'Mineralwasser',b:'kalt'}],exp:'„Eis-" bedeutet: das Getränk ist kalt.',xp:15},
+  {id:'e1-04',unit:'e1',cat:'Wortschatz',type:'mc',q:'Was passt? 🥤',opts:['Orangensaft','Tisch','Buch','Lampe'],correct:0,exp:'„der Orangensaft" — ein Getränk.',xp:10},
+  {id:'e1-05',unit:'e1',cat:'Hören',type:'dictate',q:'Hör zu und schreibe das Getränk:',audio:'Kakao',answer:'Kakao',exp:'„der Kakao" — Großbuchstabe!',xp:15},
+  {id:'e1-06',unit:'e1',cat:'Grammatik',type:'blank',q:'Was ___ Sie?',opts:['trinken','trinkt','trinke'],correct:0,exp:'Bei „Sie" (höflich) → Grundform: trinken.',xp:15},
+  {id:'e1-v01',unit:'e1',cat:'Grammatik',type:'build',q:'Baue den Satz: (ich / Kaffee / möchte / einen)',words:['ich','Kaffee','möchte','einen'],answer:'ich möchte einen Kaffee',exp:'Verb an Position 2.',xp:20},
+  {id:'e1-v02',unit:'e1',cat:'Grammatik',type:'mc',q:'Konjugation „kommen": du ___',opts:['komme','kommst','kommt','kommen'],correct:1,exp:'du kommst — Endung -st.',xp:10},
+  {id:'e1-v03',unit:'e1',cat:'Grammatik',type:'mc',q:'Konjugation „wohnen": er ___',opts:['wohne','wohnst','wohnt','wohnen'],correct:2,exp:'er/sie/es wohnt.',xp:10},
+  {id:'e1-v04',unit:'e1',cat:'Grammatik',type:'blank',q:'Wir ___ Deutsch.',opts:['lerne','lernst','lernt','lernen'],correct:3,exp:'wir lernen — Endung -en.',xp:15},
+
+  {id:'e2-01',unit:'e2',cat:'Wortschatz',type:'mc',q:'Was ist das? 📚',opts:['das Buch','der Tisch','die Tasche','das Heft'],correct:0,exp:'„das Buch" — Neutrum.',xp:10},
+  {id:'e2-02',unit:'e2',cat:'Artikel',type:'mc',q:'___ Tisch',opts:['der','die','das'],correct:0,exp:'der Tisch — maskulin.',xp:10},
+  {id:'e2-03',unit:'e2',cat:'Artikel',type:'mc',q:'___ Tasche',opts:['der','die','das'],correct:1,exp:'die Tasche — feminin.',xp:10},
+  {id:'e2-04',unit:'e2',cat:'Artikel',type:'mc',q:'___ Buch',opts:['der','die','das'],correct:2,exp:'das Buch — neutrum.',xp:10},
+  {id:'e2-05',unit:'e2',cat:'Artikel',type:'mc',q:'___ Wörterbuch',opts:['der','die','das'],correct:2,exp:'das Wörterbuch — Neutrum.',xp:10},
+  {id:'e2-06',unit:'e2',cat:'Plural',type:'mc',q:'das Buch → ___',opts:['die Buchs','die Bücher','die Bucher','die Buche'],correct:1,exp:'das Buch → die Bücher.',xp:15},
+  {id:'e2-07',unit:'e2',cat:'Plural',type:'mc',q:'der Tisch → ___',opts:['die Tischer','die Tischs','die Tische','die Tisch'],correct:2,exp:'der Tisch → die Tische.',xp:15},
+  {id:'e2-08',unit:'e2',cat:'Wortschatz',type:'match',q:'Ordne die Gegenstände im Kurs zu:',pairs:[{a:'Schreibtisch',b:'Schreiben'},{a:'Bleistift',b:'Zeichnen'},{a:'Radiergummi',b:'Löschen'},{a:'Wörterbuch',b:'Übersetzen'}],exp:'Funktion im Sprachkurs.',xp:15},
+  {id:'e2-09',unit:'e2',cat:'Negation',type:'mc',q:'Das ist ___ Buch.',opts:['ein','eine','kein','keine'],correct:0,exp:'„ein Buch" (neutrum).',xp:15},
+  {id:'e2-10',unit:'e2',cat:'Negation',type:'mc',q:'Das ist ___ Tasche.',opts:['ein','eine','kein','keine'],correct:1,exp:'„eine Tasche" (feminin).',xp:15},
+  {id:'e2-11',unit:'e2',cat:'Negation',type:'mc',q:'Das ist ___ Computer.',opts:['ein','eine','kein','keine'],correct:2,exp:'„kein Computer" (maskulin).',xp:15},
+  {id:'e2-12',unit:'e2',cat:'Negation',type:'mc',q:'Das ist ___ Lampe.',opts:['ein','eine','kein','keine'],correct:3,exp:'„keine Lampe" (feminin).',xp:15},
+  {id:'e2-13',unit:'e2',cat:'Umlaut',type:'mc',q:'Welches Wort hat einen Umlaut?',opts:['schön','Schule','Tisch','Buch'],correct:0,exp:'„schön" hat „ö".',xp:10},
+  {id:'e2-14',unit:'e2',cat:'Hören',type:'listen',q:'Höre und wähle das richtige Wort:',audio:'über',opts:['uber','über','ubr','ubren'],correct:1,exp:'„über" hat „ü".',xp:15},
+
+  {id:'e3-01',unit:'e3',cat:'Wortschatz',type:'match',q:'Ordne Land und Sprache zu:',pairs:[{a:'Deutschland',b:'Deutsch'},{a:'Frankreich',b:'Französisch'},{a:'Italien',b:'Italienisch'},{a:'Spanien',b:'Spanisch'},{a:'Polen',b:'Polnisch'},{a:'Russland',b:'Russisch'}],exp:'Sprachbezeichnung endet oft auf -isch.',xp:20},
+  {id:'e3-02',unit:'e3',cat:'Grammatik',type:'blank',q:'Ich komme ___ Tunesien.',opts:['aus','in','von','nach'],correct:0,exp:'„aus" + Land = Herkunft.',xp:10},
+  {id:'e3-03',unit:'e3',cat:'Grammatik',type:'blank',q:'Ich wohne ___ Sousse.',opts:['aus','in','von','nach'],correct:1,exp:'„in" + Stadt = Wohnort.',xp:10},
+  {id:'e3-04',unit:'e3',cat:'Grammatik',type:'build',q:'Baue die W-Frage: (wohnen / Sie / wo)',words:['wohnen','Sie','wo'],answer:'wo wohnen Sie',exp:'W-Frage: W-Wort + Verb + Person.',xp:20},
+  {id:'e3-05',unit:'e3',cat:'Grammatik',type:'build',q:'Baue die Ja/Nein-Frage: (Sie / wohnen / in Berlin)',words:['Sie','wohnen','in','Berlin'],answer:'wohnen Sie in Berlin',exp:'Ja/Nein-Frage: Verb + Person + Rest.',xp:20},
+  {id:'e3-06',unit:'e3',cat:'Grammatik',type:'mc',q:'Warst du schon mal in Berlin?',opts:['Ja, ich war in Berlin.','Ja, ich bin in Berlin.','Ja, ich wohne in Berlin.','Ja, ich komme in Berlin.'],correct:0,exp:'„war" ist Präteritum von „sein".',xp:15},
+  {id:'e3-07',unit:'e3',cat:'Geografie',type:'mc',q:'Berlin liegt im ___ von Deutschland.',opts:['Norden','Süden','Osten','Westen'],correct:2,exp:'Berlin liegt im Osten.',xp:15},
+  {id:'e3-08',unit:'e3',cat:'Geografie',type:'mc',q:'München liegt im ___ von Deutschland.',opts:['Norden','Süden','Osten','Westen'],correct:1,exp:'München liegt im Süden.',xp:15},
+  {id:'e3-09',unit:'e3',cat:'Geografie',type:'mc',q:'Hamburg liegt im ___ von Deutschland.',opts:['Norden','Süden','Osten','Westen'],correct:0,exp:'Hamburg liegt im Norden.',xp:15},
+
+  {id:'s1-01',unit:'station1',cat:'Lesen',type:'mc',q:'Regina Werner kommt aus Österreich. Sie wohnt in Wien und arbeitet als Ärztin. — Wo wohnt Regina?',opts:['in Deutschland','in Wien','in der Schweiz','in Berlin'],correct:1,exp:'„Sie wohnt in Wien."',xp:15},
+  {id:'s1-02',unit:'station1',cat:'Regionen',type:'match',q:'Ordne die Begrüßung der Region zu:',pairs:[{a:'Servus',b:'Österreich'},{a:'Grüezi',b:'Schweiz'},{a:'Moin',b:'Norddeutschland'},{a:'Grüß Gott',b:'Süddeutschland'}],exp:'Jede Region hat eigene Begrüßungen.',xp:20},
+  {id:'s1-03',unit:'station1',cat:'Höflichkeit',type:'mc',q:'Du sprichst mit deinem Professor. Was sagst du?',opts:['Wie heißt du?','Wie heißen Sie?','Hallo, wie geht\'s?','Na, alles klar?'],correct:1,exp:'Formell → „Sie".',xp:15},
+  {id:'s1-04',unit:'station1',cat:'Höflichkeit',type:'mc',q:'Du sprichst mit einem Freund. Was sagst du?',opts:['Wie heißen Sie?','Wie heißt du?','Guten Tag, mein Herr.','Entschuldigen Sie.'],correct:1,exp:'Mit Freunden → „du".',xp:15},
+
+  {id:'e4-01',unit:'e4',cat:'Wortschatz',type:'match',q:'Ordne die Zimmer den Aktivitäten zu:',pairs:[{a:'Küche',b:'Kochen'},{a:'Schlafzimmer',b:'Schlafen'},{a:'Badezimmer',b:'Duschen'},{a:'Wohnzimmer',b:'Fernsehen'},{a:'Balkon',b:'Frische Luft'}],exp:'Zimmername → Aktivität.',xp:20},
+  {id:'e4-02',unit:'e4',cat:'Akkusativ',type:'mc',q:'Ich finde ___ Balkon schön.',opts:['der','den','dem','des'],correct:1,exp:'Akkusativ maskulin: der → den.',xp:15},
+  {id:'e4-03',unit:'e4',cat:'Akkusativ',type:'mc',q:'Ich habe ___ Tisch.',opts:['ein','einen','einem','eines'],correct:1,exp:'Akkusativ maskulin: ein → einen.',xp:15},
+  {id:'e4-04',unit:'e4',cat:'Possessiv',type:'mc',q:'Das ist ___ Wohnung. (ich)',opts:['mein','meine','meinen','meiner'],correct:1,exp:'„die Wohnung" → meine.',xp:15},
+  {id:'e4-05',unit:'e4',cat:'Possessiv',type:'mc',q:'Das ist ___ Zimmer. (du)',opts:['dein','deine','deinen','deiner'],correct:0,exp:'„das Zimmer" → dein.',xp:15},
+  {id:'e4-06',unit:'e4',cat:'Komposita',type:'mc',q:'Küche + Tisch = ___',opts:['Tischküche','Küchentisch','Küchetisch','Tischküchen'],correct:1,exp:'Letztes Wort bestimmt Geschlecht.',xp:15},
+  {id:'e4-07',unit:'e4',cat:'Komposita',type:'mc',q:'Buch + Regal = ___',opts:['Regalbuch','Bücherregal','Buchregal','Regalbücher'],correct:1,exp:'die Bücher + das Regal = das Bücherregal.',xp:15},
+  {id:'e4-08',unit:'e4',cat:'Komposita',type:'mc',q:'Schreibtisch + Lampe = ___',opts:['Lampenschreibtisch','Schreibtischlampe','Schreiblampetisch','Lampetisch'],correct:1,exp:'die Schreibtischlampe.',xp:15},
+
+  {id:'fit-01',unit:'fit',cat:'Grammatik',type:'mc',q:'___ du Deutsch?',opts:['Lerne','Lernst','Lernt','Lernen'],correct:1,exp:'„du lernst" — Endung -st.',xp:15},
+  {id:'fit-02',unit:'fit',cat:'Grammatik',type:'mc',q:'Das ist ___ Buch. (Negation)',opts:['ein','kein','eine','keine'],correct:1,exp:'Verneinung: kein Buch.',xp:15},
+  {id:'fit-03',unit:'fit',cat:'Grammatik',type:'mc',q:'Ich ___ aus Tunesien.',opts:['bin','habe','komme','wohne'],correct:2,exp:'Herkunft: kommen aus.',xp:15},
+  {id:'fit-04',unit:'fit',cat:'Grammatik',type:'mc',q:'___ heißt du?',opts:['Wie','Wo','Wer','Was'],correct:0,exp:'„Wie heißt du?"',xp:10},
+  {id:'fit-05',unit:'fit',cat:'Grammatik',type:'blank',q:'Woher ___ du?',opts:['kommst','kommt','komme','kommen'],correct:0,exp:'du kommst.',xp:15},
+  {id:'fit-06',unit:'fit',cat:'Wortschatz',type:'mc',q:'„Good morning" auf Deutsch?',opts:['Guten Abend','Guten Tag','Guten Morgen','Gute Nacht'],correct:2,exp:'„Guten Morgen".',xp:10},
+  {id:'fit-07',unit:'fit',cat:'Hören',type:'listen',q:'Wie alt ist die Person?',audio:'Ich bin vierundzwanzig Jahre alt.',opts:['20','24','34','42'],correct:1,exp:'„vierundzwanzig" = 24.',xp:15},
+  {id:'fit-08',unit:'fit',cat:'Zahlen',type:'dictate',q:'Hör zu und schreibe die Zahl als Wort:',audio:'siebenundvierzig',answer:'siebenundvierzig',exp:'47 = siebenundvierzig.',xp:15}
 ];
 
 const MODULES = [
-  {id:'missions', num:'OP-01', icon:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>', title:'MISSIONS', desc:'Complete your German campaign. 12 operations.', meta:'12 OPERATIONS', xp:'+500 XP'},
-  {id:'intel', num:'OP-02', icon:'<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h7"/></svg>', title:'INTEL', desc:'Vocabulary files. Decrypt new German words.', meta:'10 FILES', xp:'+10 XP / FILE'},
-  {id:'listening', num:'OP-03', icon:'<svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 8a6 6 0 010 8"/><path d="M19 5a10 10 0 010 14"/></svg>', title:'INTERCEPT', desc:'Decode German radio transmissions.', meta:'5 SIGNALS', xp:'+15 XP / DECODE'},
-  {id:'grammar', num:'OP-04', icon:'<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/></svg>', title:'GRAMMAR', desc:'Sentence structure briefings.', meta:'5 TOPICS', xp:'+20 XP / TOPIC'},
-  {id:'training', num:'OP-05', icon:'<svg viewBox="0 0 24 24"><path d="M3 7l4 5-4 5"/><path d="M10 7l4 5-4 5"/><path d="M17 7l4 5-4 5"/></svg>', title:'TRAINING', desc:'Live drill exercises. Hit every target.', meta:'8 DRILLS', xp:'+25 XP / HIT'},
-  {id:'comms', num:'OP-06', icon:'<svg viewBox="0 0 24 24"><path d="M12 3v10"/><circle cx="12" cy="17" r="4"/><path d="M5 8a10 10 0 0114 0"/></svg>', title:'COMMS', desc:'Send voice transmissions in German.', meta:'RECORD', xp:'+50 XP / TRANS.'},
-  {id:'ops', num:'OP-07', icon:'<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="1"/><path d="M9 4V2h6v2"/><path d="M9 12l2 2 4-4"/></svg>', title:'TESTS', desc:'Field exams. Prove your German.', meta:'2 OPS', xp:'+100 XP / TEST'},
-  {id:'stats', num:'OP-08', icon:'<svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>', title:'STATUS', desc:'View operator progression and rank.', meta:'PERSONAL', xp:'—'},
-  {id:'amira', num:'PRI-01', icon:'<svg viewBox="0 0 24 24"><path d="M12 3l2.5 6.5L21 10l-5 4.5L17.5 21 12 17.5 6.5 21 8 14.5 3 10l6.5-.5z"/></svg>', title:'FROM AMIRA', desc:'Private mission briefing.', meta:'CLASSIFIED', xp:'—'}
+  {id:'missions',num:'OP-01',icon:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>',title:'MISSIONS',desc:'Complete your German campaign.',meta:'12 OPERATIONS',xp:'+500 XP'},
+  {id:'intel',num:'OP-02',icon:'<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h7"/></svg>',title:'INTEL',desc:'Vocabulary files.',meta:'10 FILES',xp:'+10 XP / FILE'},
+  {id:'listening',num:'OP-03',icon:'<svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 8a6 6 0 010 8"/><path d="M19 5a10 10 0 010 14"/></svg>',title:'INTERCEPT',desc:'Decode German transmissions.',meta:'5 SIGNALS',xp:'+15 XP / DECODE'},
+  {id:'grammar',num:'OP-04',icon:'<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/></svg>',title:'GRAMMAR',desc:'Sentence structure briefings.',meta:'5 TOPICS',xp:'+20 XP / TOPIC'},
+  {id:'uebungen',num:'OP-05',icon:'<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>',title:'ÜBUNGEN',desc:'Full A1.1 workbook.',meta:'58 ÜBUNGEN',xp:'+10-25 XP'},
+  {id:'comms',num:'OP-06',icon:'<svg viewBox="0 0 24 24"><path d="M12 3v10"/><circle cx="12" cy="17" r="4"/><path d="M5 8a10 10 0 0114 0"/></svg>',title:'COMMS',desc:'Send voice transmissions.',meta:'RECORD',xp:'+50 XP / TRANS.'},
+  {id:'ops',num:'OP-07',icon:'<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="1"/><path d="M9 4V2h6v2"/><path d="M9 12l2 2 4-4"/></svg>',title:'TESTS',desc:'Field exams.',meta:'2 OPS',xp:'+100 XP / TEST'},
+  {id:'stats',num:'OP-08',icon:'<svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>',title:'STATUS',desc:'View operator progression.',meta:'PERSONAL',xp:'—'},
+  {id:'amira',num:'PRI-01',icon:'<svg viewBox="0 0 24 24"><path d="M12 3l2.5 6.5L21 10l-5 4.5L17.5 21 12 17.5 6.5 21 8 14.5 3 10l6.5-.5z"/></svg>',title:'FROM AMIRA',desc:'Private mission briefing.',meta:'CLASSIFIED',xp:'—'}
 ];
 
-/* ============================================
-   STATE
-   ============================================ */
-let state = {
-  level:'A1.1',
-  xp:0,
-  words:0,
-  streak:5,
-  missionProgress:{1:100,2:100,3:100,4:32},
-  currentMission:0,
-  currentVocab:0,
-  currentExercise:0,
-  exerciseScore:0,
-  exerciseTotal:0,
-  currentListen:0,
-  currentGrammar:0,
-  currentView:'command',
-  previousView:'command'
+/* ============================================================
+   AMIRA MESSAGES
+   ============================================================ */
+const AMIRA_MSGS = {
+  'unit-start':{title:'START GEMEISTERT',body:'Du hast alle Übungen in <em>Start auf Deutsch</em> abgeschlossen. Der Anfang ist immer der schwerste Schritt — und du hast ihn gemeistert.'},
+  'unit-e1':{title:'EINHEIT 1 GEMEISTERT',body:'Kaffee oder Tee? Du kennst jetzt alle wichtigen Wörter und kannst im Café bestellen. Ich bin so stolz!'},
+  'unit-e2':{title:'EINHEIT 2 GEMEISTERT',body:'Sprache im Kurs — Artikel, Plural, Negation. Die Grundlagen sitzen. Das ist das Fundament für alles Weitere.'},
+  'unit-e3':{title:'EINHEIT 3 GEMEISTERT',body:'Städte, Länder, Sprachen. Du kannst jetzt über die Welt auf Deutsch sprechen. Wunderbar!'},
+  'unit-station1':{title:'STATION 1 GEMEISTERT',body:'Berufe, Begrüßungen, Regionen. Du bist jetzt ein echter Kenner der deutschen Kultur.'},
+  'unit-e4':{title:'EINHEIT 4 GEMEISTERT',body:'Menschen und Häuser. Akkusativ, Possessiv, Komposita — die Grammatik wird komplexer, aber du schaffst das mit Leichtigkeit.'},
+  'unit-fit':{title:'FIT FÜR DIE EINHEIT',body:'Alle Tests abgeschlossen. Du bist offiziell bereit für A1.2. Unfassbar, wie weit du gekommen bist.'},
+  'level-done':{title:'A1.1 ABGESCHLOSSEN',body:'Du hast ALLE Übungen des Levels A1.1 abgeschlossen. Das war eine unglaubliche Reise. Ich bin unendlich stolz auf dich. Auf zu A1.2! 🇩🇪'},
+  'intel-done':{title:'INTEL VOLLSTÄNDIG',body:'Du hast alle Vokabelkarten durchgearbeitet. Dein Wortschatz wächst jeden Tag — ich sehe es.'},
+  'listen-done':{title:'ALLE SIGNALE ENTSCHLÜSSELT',body:'Jede Übertragung abgehört und verstanden. Dein Hörverständnis ist ausgezeichnet.'},
+  'grammar-done':{title:'GRAMMATIK GEMEISTERT',body:'Alle Briefings verstanden. Die Grammatik ist kein Hindernis mehr — sie ist dein Werkzeug.'},
+  'comms-done':{title:'COMMS ETABLIERT',body:'Du hast deine Stimme gefunden. Sprich weiter, jeden Tag ein bisschen mehr.'},
+  'missions-done':{title:'ALLE MISSIONEN ABGESCHLOSSEN',body:'Jede einzelne Mission erfolgreich abgeschlossen. Du bist ein wahrer Operator.'}
 };
 
-function saveState(){ try{ localStorage.setItem('tacticalDeutsch', JSON.stringify(state)); }catch(e){} }
-function loadState(){ try{ const s = JSON.parse(localStorage.getItem('tacticalDeutsch')); if(s) state = Object.assign(state, s); }catch(e){} }
+/* ============================================================
+   STATE — fresh zero template
+   ============================================================ */
+function freshState(){
+  return {
+    level:'A1.1', xp:0, words:0, streak:0,
+    missionProgress:{},
+    currentMission:0, currentVocab:0,
+    currentListen:0, currentGrammar:0,
+    currentView:'command', previousView:'command',
+    uebCompleted:{}, uebErrors:{}, uebUnit:'start',
+    intelDone:{}, listenDone:{}, grammarDone:{},
+    commsCount:0,
+    amiraSeen:{},
+    amiraLevelSeen:false
+  };
+}
+let state = freshState();
 
-/* ============================================
+function saveState(){ try{ localStorage.setItem('tacticalDeutsch', JSON.stringify(state)); }catch(e){} }
+function loadState(){
+  try{
+    const s = JSON.parse(localStorage.getItem('tacticalDeutsch'));
+    if(s){
+      state = Object.assign(freshState(), s);
+      ['uebCompleted','uebErrors','intelDone','listenDone','grammarDone','amiraSeen','missionProgress'].forEach(k=>{
+        if(!state[k] || typeof state[k] !== 'object') state[k] = {};
+      });
+    }
+  }catch(e){}
+}
+
+/* ============================================================
+   RESET — clears everything and returns to level selection
+   ============================================================ */
+function resetAll(){
+  if(!confirm('Reset ALL progress? You will be asked to choose your level again.')) return;
+  localStorage.removeItem('tacticalDeutsch');
+  localStorage.removeItem('selectedLevel');
+  state = freshState();
+  // Close any open overlays
+  document.getElementById('uebPlayer').classList.remove('on');
+  document.getElementById('amiraMsg').classList.remove('on');
+  document.getElementById('levelUp').classList.remove('on');
+  document.body.style.overflow = '';
+  // Return to level selection
+  document.getElementById('shell').classList.remove('on');
+  document.getElementById('levelScreen').classList.add('active');
+}
+window.resetAll = resetAll;
+
+/* ============================================================
    BOOT
-   ============================================ */
+   ============================================================ */
 const bootStages = [
-  {at:0,  label:'INITIALIZING CORE SYSTEMS'},
-  {at:20, label:'LOADING MISSIONS'},
-  {at:40, label:'LOADING INTEL DATABASE'},
-  {at:60, label:'LOADING TRAINING MODULES'},
-  {at:80, label:'VERIFYING OPERATOR ACHREF'},
-  {at:95, label:'ENCRYPTING SESSION'}
+  {at:0,label:'INITIALIZING CORE SYSTEMS'},
+  {at:20,label:'LOADING MISSIONS'},
+  {at:40,label:'LOADING INTEL DATABASE'},
+  {at:60,label:'LOADING ÜBUNGEN MODULE'},
+  {at:80,label:'VERIFYING OPERATOR ACHREF'},
+  {at:95,label:'ENCRYPTING SESSION'}
 ];
 let bootDone = false;
 
@@ -1143,13 +1175,11 @@ function runBoot(){
   const stage = document.getElementById('bootStage');
   const log = document.getElementById('bootLog');
   let p = 0, stageIdx = 0;
-
   const int = setInterval(()=>{
     p += Math.random() * 6 + 2;
     if(p > 100) p = 100;
     bar.style.width = p + '%';
     pct.textContent = Math.floor(p) + '%';
-
     while(stageIdx < bootStages.length && p >= bootStages[stageIdx].at){
       const s = bootStages[stageIdx];
       const line = document.createElement('div');
@@ -1158,39 +1188,30 @@ function runBoot(){
       stage.textContent = (stageIdx < bootStages.length - 1) ? bootStages[stageIdx+1].label : 'SYSTEM READY';
       stageIdx++;
     }
-
     if(p >= 100){
       clearInterval(int);
       setTimeout(()=>{
         document.getElementById('boot').classList.add('hide');
         bootDone = true;
         initAfterBoot();
-      }, 500);
+      }, 400);
     }
-  }, 70);
+  }, 60);
 }
-
 function skipBoot(){
   if(bootDone) return;
   bootDone = true;
   document.getElementById('boot').classList.add('hide');
   initAfterBoot();
 }
-
 document.addEventListener('keydown', e => { if(e.key === 'Escape' && !bootDone) skipBoot(); });
 
-/* ============================================
+/* ============================================================
    TACTICAL CURSOR
-   ============================================ */
+   ============================================================ */
 const cursor = document.getElementById('tacCursor');
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
+let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 function animateCursor(){
   cursorX += (mouseX - cursorX) * 0.35;
   cursorY += (mouseY - cursorY) * 0.35;
@@ -1198,19 +1219,94 @@ function animateCursor(){
   requestAnimationFrame(animateCursor);
 }
 animateCursor();
-
 document.addEventListener('mouseover', e => {
-  const target = e.target.closest('button, .module, .mission-card, .intel-card-car, .level-card, .test-row-c, .listen-ctrl-c, .carousel-btn, .gram-token-c');
-  if(target){ cursor.classList.add('locked'); }
+  const t = e.target.closest('button, .module, .mission-card, .intel-card-car, .level-card, .test-row-c, .listen-ctrl-c, .carousel-btn, .gram-token-c, .unit-card, .ex-card, .qa, .opt, .match-item, .build-word, .build-slot, .listen-btn, .listen-ctrl, .up-close, .hud-icon-btn');
+  if(t) cursor.classList.add('locked');
 });
 document.addEventListener('mouseout', e => {
-  const target = e.target.closest('button, .module, .mission-card, .intel-card-car, .level-card, .test-row-c, .listen-ctrl-c, .carousel-btn, .gram-token-c');
-  if(target){ cursor.classList.remove('locked'); }
+  const t = e.target.closest('button, .module, .mission-card, .intel-card-car, .level-card, .test-row-c, .listen-ctrl-c, .carousel-btn, .gram-token-c, .unit-card, .ex-card, .qa, .opt, .match-item, .build-word, .build-slot, .listen-btn, .listen-ctrl, .up-close, .hud-icon-btn');
+  if(t) cursor.classList.remove('locked');
 });
 
-/* ============================================
+/* ============================================================
+   AMIRA MESSAGE
+   ============================================================ */
+function showAmira(key){
+  const msg = AMIRA_MSGS[key];
+  if(!msg) return;
+  document.getElementById('amTitle').textContent = msg.title;
+  document.getElementById('amBody').innerHTML = msg.body;
+  document.getElementById('amiraMsg').classList.add('on');
+}
+function closeAmira(){ document.getElementById('amiraMsg').classList.remove('on'); }
+window.closeAmira = closeAmira;
+
+/* ============================================================
+   COMPLETION CHECKS
+   ============================================================ */
+function checkUnitCompletion(unitId){
+  const unitExs = EX.filter(e => e.unit === unitId);
+  if(!unitExs.length) return false;
+  const allDone = unitExs.every(e => state.uebCompleted[e.id]);
+  if(!allDone) return false;
+  if(state.amiraSeen['unit-' + unitId]) return true;
+  state.amiraSeen['unit-' + unitId] = true;
+  saveState();
+  setTimeout(()=>showAmira('unit-' + unitId), 800);
+  return true;
+}
+function checkLevelCompletion(){
+  const allUnitsDone = UNITS.every(u => {
+    const uExs = EX.filter(e => e.unit === u.id);
+    return uExs.length === 0 || uExs.every(e => state.uebCompleted[e.id]);
+  });
+  if(!allUnitsDone) return false;
+  if(state.amiraLevelSeen) return true;
+  state.amiraLevelSeen = true;
+  saveState();
+  setTimeout(()=>showAmira('level-done'), 1400);
+  return true;
+}
+function checkIntelCompletion(){
+  if(Object.keys(state.intelDone).length >= VOCAB.length){
+    if(state.amiraSeen['intel-done']) return;
+    state.amiraSeen['intel-done'] = true;
+    saveState();
+    setTimeout(()=>showAmira('intel-done'), 600);
+  }
+}
+function checkListenCompletion(){
+  if(Object.keys(state.listenDone).length >= LISTENING.length){
+    if(state.amiraSeen['listen-done']) return;
+    state.amiraSeen['listen-done'] = true;
+    saveState();
+    setTimeout(()=>showAmira('listen-done'), 600);
+  }
+}
+function checkGrammarCompletion(){
+  if(Object.keys(state.grammarDone).length >= GRAMMAR.length){
+    if(state.amiraSeen['grammar-done']) return;
+    state.amiraSeen['grammar-done'] = true;
+    saveState();
+    setTimeout(()=>showAmira('grammar-done'), 600);
+  }
+}
+function checkMissionsCompletion(){
+  const allMissionUnits = [...new Set(MISSIONS.map(m=>m.unit))];
+  const allDone = allMissionUnits.every(u => {
+    const exs = EX.filter(e => e.unit === u);
+    return exs.length === 0 || exs.every(e => state.uebCompleted[e.id]);
+  });
+  if(!allDone) return;
+  if(state.amiraSeen['missions-done']) return;
+  state.amiraSeen['missions-done'] = true;
+  saveState();
+  setTimeout(()=>showAmira('missions-done'), 1400);
+}
+
+/* ============================================================
    LEVEL SELECT
-   ============================================ */
+   ============================================================ */
 function buildLevelGrid(){
   const grid = document.getElementById('levelGrid');
   grid.innerHTML = '';
@@ -1218,40 +1314,42 @@ function buildLevelGrid(){
     const tier = lv.startsWith('A') ? 'BEGINNER' : 'INTERMEDIATE';
     const b = document.createElement('button');
     b.className = 'level-card';
-    b.innerHTML = `
-      <div class="lv-tag">${tier}</div>
-      <div class="lv-code">${lv}</div>
-      <div class="lv-name">German Training</div>
-      <div class="lv-arrow">SELECT →</div>`;
+    b.innerHTML = `<div class="lv-tag">${tier}</div><div class="lv-code">${lv}</div><div class="lv-name">German Training</div><div class="lv-arrow">SELECT →</div>`;
     b.onclick = () => selectLevel(lv);
     grid.appendChild(b);
   });
 }
-
 function openLevelScreen(){
   document.getElementById('levelScreen').classList.add('active');
   document.getElementById('shell').classList.remove('on');
 }
-
 function selectLevel(lv){
   state.level = lv;
   saveState();
   localStorage.setItem('selectedLevel', lv);
-
   document.getElementById('levelScreen').classList.remove('active');
   document.getElementById('shell').classList.add('on');
-
   document.getElementById('cmdLevelTag').textContent = lv;
+
+  // Full re-render (fresh state possible after reset)
   updateHUD();
+  renderModuleGrid();
+  renderMissions();
+  renderIntel();
+  initListening();
+  initGrammar();
+  renderUebungen();
+  renderRankTable();
+  buildWaveform();
+
   toast('LEVEL ' + lv + ' SELECTED');
 }
 
-/* ============================================
+/* ============================================================
    VIEW NAVIGATION
-   ============================================ */
+   ============================================================ */
 function enterModule(id){
   if(id === state.currentView) return;
-
   let op = '', name = '';
   const m = MODULES.find(x => x.id === id);
   if(m){ op = m.num; name = m.title; }
@@ -1263,7 +1361,6 @@ function enterModule(id){
 
   const lock = document.getElementById('targetLock');
   lock.classList.add('on');
-
   const scan = lock.querySelector('.tl-scan');
   scan.style.animation = 'none';
   void scan.offsetWidth;
@@ -1272,7 +1369,6 @@ function enterModule(id){
   setTimeout(()=>{
     state.previousView = state.currentView;
     state.currentView = id;
-
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     const target = document.getElementById('view-' + id);
     if(target){
@@ -1280,86 +1376,76 @@ function enterModule(id){
       const sc = target.querySelector('.view-scroll');
       if(sc) sc.scrollTop = 0;
     }
-
-    document.querySelectorAll('.mobileNav button').forEach(b => {
-      b.classList.toggle('active', b.getAttribute('onclick').includes("'"+id+"'"));
-    });
+    document.querySelectorAll('.mobileNav button').forEach(b => b.classList.toggle('active', b.getAttribute('onclick').includes("'"+id+"'")));
 
     if(id === 'missions') renderMissions();
     if(id === 'intel') renderIntel();
     if(id === 'listening') initListening();
     if(id === 'grammar') initGrammar();
-    if(id === 'training') renderExercise();
+    if(id === 'uebungen') renderUebungen();
     if(id === 'comms') buildWaveform();
     if(id === 'stats') renderRankTable();
     if(id === 'command') renderModuleGrid();
 
     setTimeout(()=>lock.classList.remove('on'), 180);
   }, 380);
-
   saveState();
 }
-
 function goBack(){ enterModule('command'); }
 
-/* ============================================
+/* ============================================================
    COMMAND CENTER GRID
-   ============================================ */
+   ============================================================ */
 function renderModuleGrid(){
   const grid = document.getElementById('moduleGrid');
   if(!grid) return;
   grid.innerHTML = '';
-
   MODULES.forEach(m => {
     const progress = getModuleProgress(m.id);
     const btn = document.createElement('button');
     btn.className = 'module';
     btn.innerHTML = `
-      <div class="module-top">
-        <span class="module-num">${m.num}</span>
-        <span class="module-id">${state.level}</span>
-      </div>
+      <div class="module-top"><span class="module-num">${m.num}</span><span class="module-id">${state.level}</span></div>
       <div class="module-icon">${m.icon}${m.title}</div>
       <div class="module-title">${m.title}</div>
       <div class="module-desc">${m.desc}</div>
       <div class="module-bar"><i style="width:${progress}%"></i></div>
       <div class="module-foot">
-        <div class="module-meta">
-          <span>${m.meta}</span>
-          <span><b>${m.xp}</b></span>
-        </div>
+        <div class="module-meta"><span>${m.meta}</span><span><b>${m.xp}</b></span></div>
         <span class="module-enter">ENTER →</span>
-      </div>
-    `;
+      </div>`;
     btn.onclick = () => enterModule(m.id);
     grid.appendChild(btn);
   });
-
-  const missionsDone = Object.values(state.missionProgress).filter(v => v >= 100).length;
-  document.getElementById('cmdMissionsDone').textContent = missionsDone;
+  document.getElementById('cmdMissionsDone').textContent = Object.values(state.missionProgress).filter(v=>v>=100).length;
   document.getElementById('cmdWords').textContent = state.words;
   document.getElementById('cmdXp').textContent = state.xp;
 }
-
 function getModuleProgress(id){
   if(id === 'missions'){
-    const done = Object.values(state.missionProgress).filter(v => v >= 100).length;
-    return (done/12)*100;
+    const unitIds = [...new Set(MISSIONS.map(m=>m.unit))];
+    let total = 0, done = 0;
+    unitIds.forEach(u => {
+      const exs = EX.filter(e => e.unit === u);
+      total += exs.length;
+      done += exs.filter(e => state.uebCompleted[e.id]).length;
+    });
+    return total ? (done/total)*100 : 0;
   }
-  if(id === 'intel') return (state.words/VOCAB.length)*100;
-  if(id === 'listening') return 30;
-  if(id === 'grammar') return 20;
-  if(id === 'training') return Math.min(100, (state.exerciseTotal/Math.max(1, state.exerciseTotal+2))*100);
-  if(id === 'comms') return 40;
+  if(id === 'intel') return (Object.keys(state.intelDone).length/VOCAB.length)*100;
+  if(id === 'listening') return (Object.keys(state.listenDone).length/LISTENING.length)*100;
+  if(id === 'grammar') return (Object.keys(state.grammarDone).length/GRAMMAR.length)*100;
+  if(id === 'uebungen') return EX.length ? (Object.keys(state.uebCompleted).length/EX.length)*100 : 0;
+  if(id === 'comms') return Math.min(100, state.commsCount * 33);
   if(id === 'ops') return 0;
   if(id === 'stats') return 100;
   if(id === 'amira') return 100;
   return 0;
 }
 
-/* ============================================
+/* ============================================================
    HUD / XP / RANK
-   ============================================ */
+   ============================================================ */
 function getRank(xp){ let r = RANKS[0]; for(const rank of RANKS){ if(xp >= rank.xp) r = rank; } return r; }
 function getNextRank(xp){ for(const rank of RANKS){ if(xp < rank.xp) return rank; } return RANKS[RANKS.length-1]; }
 
@@ -1375,40 +1461,39 @@ function updateHUD(){
   document.getElementById('hudRankName').textContent = rank.name;
   document.getElementById('hudStreak').textContent = state.streak;
 
-  const cmdXp = document.getElementById('cmdXp');
-  if(cmdXp) cmdXp.textContent = state.xp;
+  const cmdXp = document.getElementById('cmdXp'); if(cmdXp) cmdXp.textContent = state.xp;
+  const statsXp = document.getElementById('statsXp'); if(statsXp) statsXp.textContent = state.xp;
+  const statsWords = document.getElementById('statsWords'); if(statsWords) statsWords.textContent = state.words;
+  const statsRank = document.getElementById('statsLvlName'); if(statsRank) statsRank.textContent = rank.name;
 
-  const statsXp = document.getElementById('statsXp');
-  if(statsXp) statsXp.textContent = state.xp;
-
-  const statsWords = document.getElementById('statsWords');
-  if(statsWords) statsWords.textContent = state.words;
-
-  const statsRank = document.getElementById('statsLvlName');
-  if(statsRank) statsRank.textContent = rank.name;
-
-  const statsCourse = document.getElementById('statsCourse');
-  if(statsCourse){
-    const missionsDone = Object.values(state.missionProgress).filter(v => v >= 100).length;
-    statsCourse.innerHTML = Math.round((missionsDone/12)*100) + '<small>%</small>';
-  }
-
-  const mDone = document.getElementById('missionsDone');
-  if(mDone){
-    const done = Object.values(state.missionProgress).filter(v => v >= 100).length;
-    mDone.textContent = done + ' / 12';
-  }
+  updateMissionProgressFromUnits();
 
   const mXp = document.getElementById('missionsXpAvailable');
   if(mXp){
     const avail = MISSIONS.reduce((sum, m) => {
-      const p = state.missionProgress[m.n] || 0;
-      return sum + (p >= 100 ? 0 : m.xp);
+      const exs = EX.filter(e => e.unit === m.unit);
+      const done = exs.filter(e => state.uebCompleted[e.id]).length;
+      return sum + (done < exs.length ? m.xp : 0);
     }, 0);
     mXp.textContent = avail;
   }
+  const mDone = document.getElementById('missionsDone');
+  if(mDone){
+    const doneMissions = MISSIONS.filter(m => {
+      const exs = EX.filter(e => e.unit === m.unit);
+      return exs.length && exs.every(e => state.uebCompleted[e.id]);
+    }).length;
+    mDone.textContent = doneMissions + ' / 12';
+  }
 }
-
+function updateMissionProgressFromUnits(){
+  MISSIONS.forEach(m => {
+    const exs = EX.filter(e => e.unit === m.unit);
+    if(!exs.length) return;
+    const done = exs.filter(e => state.uebCompleted[e.id]).length;
+    state.missionProgress[m.n] = (done/exs.length) * 100;
+  });
+}
 function addXp(amount){
   const before = getRank(state.xp);
   state.xp += amount;
@@ -1416,11 +1501,8 @@ function addXp(amount){
   saveState();
   updateHUD();
   showXpFloat('+' + amount + ' XP');
-  if(after.lvl > before.lvl){
-    setTimeout(()=>showLevelUp(after), 500);
-  }
+  if(after.lvl > before.lvl){ setTimeout(()=>showLevelUp(after), 500); }
 }
-
 function showXpFloat(text){
   const el = document.createElement('div');
   el.className = 'xp-float';
@@ -1430,7 +1512,6 @@ function showXpFloat(text){
   document.body.appendChild(el);
   setTimeout(()=>el.remove(), 1200);
 }
-
 function showLevelUp(rank){
   document.getElementById('luRank').textContent = rank.name;
   document.getElementById('luLvl').textContent = 'LEVEL ' + String(rank.lvl).padStart(2,'0');
@@ -1438,106 +1519,82 @@ function showLevelUp(rank){
 }
 function closeLevelUp(){ document.getElementById('levelUp').classList.remove('on'); }
 
-/* ============================================
+/* ============================================================
    MISSIONS
-   ============================================ */
+   ============================================================ */
 function renderMissions(){
   const car = document.getElementById('missionCarousel');
   if(!car) return;
   car.innerHTML = '';
   MISSIONS.forEach((m, i) => {
-    const unlocked = i < 4 || (state.missionProgress[m.n] !== undefined);
-    const progress = state.missionProgress[m.n] || 0;
+    const exs = EX.filter(e => e.unit === m.unit);
+    const done = exs.filter(e => state.uebCompleted[e.id]).length;
+    const progress = exs.length ? (done/exs.length)*100 : 0;
+    const completed = progress >= 100;
+    const prevCompleted = i === 0 || (()=>{
+      const prev = MISSIONS[i-1];
+      const pexs = EX.filter(e => e.unit === prev.unit);
+      return pexs.length && pexs.every(e => state.uebCompleted[e.id]);
+    })();
+    const unlocked = i < 4 || prevCompleted;
+
     const card = document.createElement('button');
     card.className = 'mission-card' + (unlocked ? '' : ' locked');
     card.innerHTML = `
-      <div class="mission-card-top">
-        <span class="mission-card-num">${m.code}</span>
-        <span class="mission-card-lvl">${state.level}</span>
-      </div>
-      <div class="mission-card-title">${unlocked ? '' : '🔒 '}${m.title}</div>
+      <div class="mission-card-top"><span class="mission-card-num">${m.code}</span><span class="mission-card-lvl">${state.level}</span></div>
+      <div class="mission-card-title">${unlocked ? '' : '🔒 '}${m.title}${completed ? ' ✓' : ''}</div>
       <div class="mission-card-desc">${m.desc}</div>
       <div class="mission-card-progress"><i style="width:${progress}%"></i></div>
-      <div class="mission-card-foot">
-        <span class="mission-card-xp">XP <b>+${m.xp}</b></span>
-        <span class="mission-card-enter">${unlocked ? 'DEPLOY →' : 'LOCKED'}</span>
-      </div>`;
+      <div class="mission-card-foot"><span class="mission-card-xp">XP <b>+${m.xp}</b></span><span class="mission-card-enter">${completed ? 'ERLEDIGT' : (unlocked ? 'DEPLOY →' : 'LOCKED')}</span></div>`;
     if(unlocked) card.onclick = () => openMission(i);
     car.appendChild(card);
   });
-
   const dots = document.getElementById('missionDots');
   dots.innerHTML = '';
-  MISSIONS.forEach((_, i) => {
-    const d = document.createElement('i');
-    if(i === 0) d.classList.add('on');
-    dots.appendChild(d);
-  });
-
+  MISSIONS.forEach((_, i) => { const d = document.createElement('i'); if(i === 0) d.classList.add('on'); dots.appendChild(d); });
   updateHUD();
 }
-
 function openMission(i){
   state.currentMission = i;
+  state.uebUnit = MISSIONS[i].unit;
   saveState();
   toast('DEPLOYING ' + MISSIONS[i].code);
-  setTimeout(()=>enterModule('training'), 300);
+  setTimeout(()=>enterModule('uebungen'), 300);
 }
 
-/* ============================================
-   INTEL (VOCAB)
-   ============================================ */
+/* ============================================================
+   INTEL
+   ============================================================ */
 function renderIntel(){
   const car = document.getElementById('intelCarousel');
   if(!car) return;
   car.innerHTML = '';
   VOCAB.forEach((v, i) => {
+    const done = !!state.intelDone[i];
     const card = document.createElement('div');
     card.className = 'intel-card-car';
     card.innerHTML = `
-      <div class="intel-state-car locked">● UNKNOWN INTEL</div>
-      <button class="intel-speak-car" title="Listen">
-        <svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 8a6 6 0 010 8"/></svg>
-      </button>
-      <div class="intel-word-car intel-hidden-car">${v[0]}</div>
-      <div class="intel-mean-car intel-hidden-car">${v[1]}</div>
+      <div class="intel-state-car ${done ? '' : 'locked'}">${done ? '● INTEL DECLASSIFIED' : '● UNKNOWN INTEL'}</div>
+      <button class="intel-speak-car" title="Listen"><svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 8a6 6 0 010 8"/></svg></button>
+      <div class="intel-word-car ${done ? 'intel-reveal-car' : 'intel-hidden-car'}">${v[0]}</div>
+      <div class="intel-mean-car ${done ? 'intel-reveal-car' : 'intel-hidden-car'}">${v[1]}</div>
       <div class="intel-actions-car">
-        <button class="btn ghost small" onclick="revealIntel(this)">REVEAL</button>
-        <button class="btn ghost small" onclick="nextIntelCarousel(this, false)">UNKNOWN</button>
-        <button class="btn primary small" onclick="nextIntelCarousel(this, true)">ACQUIRED +10</button>
-      </div>
-    `;
-    card.querySelector('.intel-speak-car').onclick = (e) => {
-      e.stopPropagation();
-      speakWordOf(v[0]);
-    };
+        ${done
+          ? '<span style="font-family:Rajdhani,sans-serif;font-size:11px;letter-spacing:.2em;color:var(--green);text-transform:uppercase">✓ Erledigt</span>'
+          : `<button class="btn ghost small" onclick="revealIntel(this, ${i})">REVEAL</button>
+             <button class="btn primary small" onclick="acquireIntel(this, ${i})">ACQUIRED +10</button>`}
+      </div>`;
+    card.querySelector('.intel-speak-car').onclick = (e) => { e.stopPropagation(); speakWordOf(v[0]); };
     car.appendChild(card);
   });
-
-  const progEl = document.getElementById('intelProgressText');
-  if(progEl) progEl.textContent =
-    String(state.currentVocab + 1).padStart(2,'0') + ' / ' + String(VOCAB.length).padStart(2,'0');
-
+  const revealed = Object.keys(state.intelDone).length;
+  document.getElementById('intelProgressText').textContent = String(revealed).padStart(2,'0') + ' / ' + String(VOCAB.length).padStart(2,'0');
   const dots = document.getElementById('intelDots');
-  if(dots){
-    dots.innerHTML = '';
-    VOCAB.forEach((_, i) => {
-      const d = document.createElement('i');
-      if(i === state.currentVocab) d.classList.add('on');
-      dots.appendChild(d);
-    });
-  }
-
-  const xpAvail = document.getElementById('intelXpAvailable');
-  if(xpAvail) xpAvail.textContent = state.words * 10;
-
-  setTimeout(()=>{
-    const cards = car.querySelectorAll('.intel-card-car');
-    if(cards[state.currentVocab]) cards[state.currentVocab].scrollIntoView({inline:'center', behavior:'smooth'});
-  }, 100);
+  dots.innerHTML = '';
+  VOCAB.forEach((_, i) => { const d = document.createElement('i'); if(state.intelDone[i]) d.classList.add('on'); dots.appendChild(d); });
+  document.getElementById('intelXpAvailable').textContent = (VOCAB.length - revealed) * 10;
 }
-
-function revealIntel(btn){
+function revealIntel(btn, idx){
   const card = btn.closest('.intel-card-car');
   card.querySelector('.intel-word-car').classList.remove('intel-hidden-car');
   card.querySelector('.intel-mean-car').classList.remove('intel-hidden-car');
@@ -1546,30 +1603,17 @@ function revealIntel(btn){
   card.querySelector('.intel-state-car').textContent = '● INTEL DECLASSIFIED';
   card.querySelector('.intel-state-car').classList.remove('locked');
 }
-
-function nextIntelCarousel(btn, known){
-  const car = document.getElementById('intelCarousel');
-  if(known){
-    state.words += 1;
-    addXp(10);
-    toast('INTEL ACQUIRED +10 XP');
-  }
-  state.currentVocab = (state.currentVocab + 1) % VOCAB.length;
+function acquireIntel(btn, idx){
+  if(state.intelDone[idx]) return;
+  state.intelDone[idx] = true;
+  state.words += 1;
   saveState();
-  const cards = car.querySelectorAll('.intel-card-car');
-  if(cards[state.currentVocab]){
-    cards[state.currentVocab].scrollIntoView({inline:'center', behavior:'smooth'});
-  }
-  const progEl = document.getElementById('intelProgressText');
-  if(progEl) progEl.textContent =
-    String(state.currentVocab + 1).padStart(2,'0') + ' / ' + String(VOCAB.length).padStart(2,'0');
-  const dots = document.getElementById('intelDots');
-  if(dots){
-    dots.querySelectorAll('i').forEach((d,i)=>d.classList.toggle('on', i === state.currentVocab));
-  }
-  updateHUD();
+  addXp(10);
+  toast('INTEL ACQUIRED +10 XP');
+  renderIntel();
+  checkIntelCompletion();
+  renderModuleGrid();
 }
-
 function speakWordOf(word){
   if('speechSynthesis' in window){
     speechSynthesis.cancel();
@@ -1579,9 +1623,9 @@ function speakWordOf(word){
   }
 }
 
-/* ============================================
+/* ============================================================
    CAROUSEL HELPER
-   ============================================ */
+   ============================================================ */
 function scrollCarousel(id, dir){
   const car = document.getElementById(id);
   if(!car) return;
@@ -1591,9 +1635,9 @@ function scrollCarousel(id, dir){
   car.scrollBy({left: cardW * dir * 2, behavior:'smooth'});
 }
 
-/* ============================================
+/* ============================================================
    LISTENING
-   ============================================ */
+   ============================================================ */
 let listenRAF = null, listenTimerInt = null, listenSeconds = 0, listeningActive = false;
 
 function initListening(){
@@ -1602,236 +1646,162 @@ function initListening(){
   car.innerHTML = '';
   LISTENING.forEach((t, i) => {
     const isActive = i === state.currentListen;
+    const done = !!state.listenDone[i];
     const card = document.createElement('button');
-    card.className = 'mission-card listen-card' + (isActive ? ' active' : '');
-    card.style.width = '240px';
-    card.style.minHeight = '150px';
-    card.style.padding = '16px';
+    card.className = 'mission-card listen-card' + (isActive ? ' active' : '') + (done ? ' done-card' : '');
+    card.style.width = '240px'; card.style.minHeight = '150px'; card.style.padding = '16px';
     card.innerHTML = `
-      <div class="mission-card-top">
-        <span class="mission-card-num">${t.code}</span>
-        <span class="mission-card-lvl">${state.level}</span>
-      </div>
+      <div class="mission-card-top"><span class="mission-card-num">${t.code}</span><span class="mission-card-lvl">${state.level}</span></div>
       <div class="mission-card-title" style="font-size:18px;margin-top:6px">${t.name}</div>
-      <div class="mission-card-progress" style="margin-top:auto"><i style="width:${isActive ? 100 : 0}%"></i></div>
-      <div class="mission-card-foot" style="padding-top:10px">
-        <span class="mission-card-xp">+15 XP</span>
-        <span class="mission-card-enter">${isActive ? '● ACTIVE' : 'OPEN →'}</span>
-      </div>`;
+      <div class="mission-card-progress" style="margin-top:auto"><i style="width:${done ? 100 : (isActive ? 50 : 0)}%"></i></div>
+      <div class="mission-card-foot" style="padding-top:10px"><span class="mission-card-xp">+15 XP</span><span class="mission-card-enter">${done ? '✓ DONE' : (isActive ? '● ACTIVE' : 'OPEN →')}</span></div>`;
     card.onclick = () => selectTransmission(i);
     car.appendChild(card);
   });
-
   buildListenWave();
   loadTransmission(state.currentListen);
   updateListenCount();
 }
-
 function selectTransmission(i){
   state.currentListen = i;
   saveState();
-
   document.querySelectorAll('#listenCarousel .listen-card').forEach((c, idx) => {
     const on = idx === i;
     c.classList.toggle('active', on);
-    const bar = c.querySelector('.mission-card-progress i');
-    if(bar) bar.style.width = on ? '100%' : '0%';
     const enter = c.querySelector('.mission-card-enter');
-    if(enter) enter.textContent = on ? '● ACTIVE' : 'OPEN →';
+    if(enter && !state.listenDone[idx]) enter.textContent = on ? '● ACTIVE' : 'OPEN →';
   });
-
   loadTransmission(i);
   updateListenCount();
 }
-
 function updateListenCount(){
   const el = document.getElementById('listenCount');
-  if(el) el.textContent =
-    String(state.currentListen+1).padStart(2,'0') + ' / ' + String(LISTENING.length).padStart(2,'0');
+  if(el) el.textContent = String(Object.keys(state.listenDone).length).padStart(2,'0') + ' / ' + String(LISTENING.length).padStart(2,'0');
 }
-
 function setListenStatus(label, code){
   const s = document.getElementById('listenStatus');
   if(!s) return;
   const b = s.querySelector('b');
-  let codeSpan = s.querySelector('#listenCode');
+  const codeSpan = s.querySelector('#listenCode');
   if(b) b.textContent = label;
-  if(codeSpan){
-    codeSpan.textContent = code;
-  } else {
-    s.innerHTML = 'SIGNAL: <b>' + label + '</b> // <span id="listenCode">' + code + '</span>';
-  }
+  if(codeSpan) codeSpan.textContent = code;
 }
-
 function buildListenWave(){
   const wave = document.getElementById('listenWave');
   if(!wave) return;
   wave.innerHTML = '';
   for(let i=0;i<64;i++){
-    const b = document.createElement('div');
-    b.className = 'wb';
+    const b = document.createElement('div'); b.className = 'wb';
     b.style.height = (8 + Math.random() * 60) + '%';
     wave.appendChild(b);
   }
 }
-
 function loadTransmission(i){
-  const t = LISTENING[i];
-  if(!t) return;
-
-  const nameEl = document.getElementById('listenName');
-  if(nameEl) nameEl.textContent = t.name;
-
+  const t = LISTENING[i]; if(!t) return;
+  document.getElementById('listenName').textContent = t.name;
   setListenStatus('LOCKED', t.code);
-
   document.getElementById('listenDur').textContent = formatTime(t.duration);
   document.getElementById('listenCur').textContent = '00:00';
   document.getElementById('listenProgress').style.width = '0%';
   document.getElementById('listenDe').textContent = t.german;
   document.getElementById('listenFr').textContent = t.french;
   document.getElementById('listenTranscript').classList.remove('open');
-
   listeningActive = false;
   cancelAnimationFrame(listenRAF);
   clearInterval(listenTimerInt);
-
   const wave = document.getElementById('listenWave');
   if(wave){
     wave.classList.remove('playing');
-    wave.querySelectorAll('.wb').forEach(b => {
-      b.style.height = (8 + Math.random() * 30) + '%';
-      b.style.opacity = '.5';
-    });
+    wave.querySelectorAll('.wb').forEach(b => { b.style.height = (8 + Math.random() * 30) + '%'; b.style.opacity = '.5'; });
   }
-
-  const playBtn = document.getElementById('listenPlay');
-  if(playBtn) playBtn.disabled = false;
+  const playBtn = document.getElementById('listenPlay'); if(playBtn) playBtn.disabled = false;
 }
-
-function toggleTranscript(){
-  const t = document.getElementById('listenTranscript');
-  if(t) t.classList.toggle('open');
-}
+function toggleTranscript(){ document.getElementById('listenTranscript').classList.toggle('open'); }
 
 function playTransmission(){
-  const t = LISTENING[state.currentListen];
-  if(!t) return;
-  if(!('speechSynthesis' in window)){ toast('AUDIO UNSUPPORTED'); return; }
+  const t = LISTENING[state.currentListen]; if(!t) return;
+  if(!('speechSynthesis' in window)){ toast('AUDIO UNSUPPORTED', true); return; }
   speechSynthesis.cancel();
-
   const u = new SpeechSynthesisUtterance(t.german);
-  u.lang = 'de-DE';
-  u.rate = 0.92;
-
+  u.lang = 'de-DE'; u.rate = 0.92;
   const playBtn = document.getElementById('listenPlay');
   const wave = document.getElementById('listenWave');
   const estDur = Math.max(4, t.german.length * 0.09);
-
   listeningActive = true;
   if(playBtn) playBtn.disabled = true;
   setListenStatus('● TRANSMITTING', t.code);
   if(wave) wave.classList.add('playing');
-
   const bars = wave ? wave.querySelectorAll('.wb') : [];
   function animate(){
     if(!listeningActive) return;
-    bars.forEach(b => {
-      const v = 0.2 + Math.random() * 0.8;
-      b.style.height = (v * 85) + '%';
-      b.style.opacity = (0.5 + Math.random() * 0.5).toFixed(2);
-    });
+    bars.forEach(b => { const v = 0.2 + Math.random() * 0.8; b.style.height = (v * 85) + '%'; b.style.opacity = (0.5 + Math.random() * 0.5).toFixed(2); });
     listenRAF = requestAnimationFrame(animate);
   }
   animate();
-
   listenSeconds = 0;
   const dur = estDur;
   clearInterval(listenTimerInt);
   listenTimerInt = setInterval(()=>{
     listenSeconds += 0.2;
     if(listenSeconds >= dur) listenSeconds = dur;
-    const cur = document.getElementById('listenCur');
-    if(cur) cur.textContent = formatTime(listenSeconds);
-    const prog = document.getElementById('listenProgress');
-    if(prog) prog.style.width = ((listenSeconds/dur)*100) + '%';
+    document.getElementById('listenCur').textContent = formatTime(listenSeconds);
+    document.getElementById('listenProgress').style.width = ((listenSeconds/dur)*100) + '%';
   }, 200);
-
   u.onend = () => {
     listeningActive = false;
-    cancelAnimationFrame(listenRAF);
-    clearInterval(listenTimerInt);
-    const cur = document.getElementById('listenCur');
-    if(cur) cur.textContent = formatTime(dur);
-    const prog = document.getElementById('listenProgress');
-    if(prog) prog.style.width = '100%';
+    cancelAnimationFrame(listenRAF); clearInterval(listenTimerInt);
+    document.getElementById('listenCur').textContent = formatTime(dur);
+    document.getElementById('listenProgress').style.width = '100%';
     if(wave) wave.classList.remove('playing');
     bars.forEach(b => { b.style.height = (8 + Math.random() * 25) + '%'; b.style.opacity = '.5'; });
     setListenStatus('RECEIVED', t.code);
     if(playBtn) playBtn.disabled = false;
-    addXp(15);
-    toast('TRANSMISSION DECODED +15 XP');
+    if(!state.listenDone[state.currentListen]){
+      state.listenDone[state.currentListen] = true;
+      saveState();
+      addXp(15);
+      toast('TRANSMISSION DECODED +15 XP');
+      initListening();
+      checkListenCompletion();
+      renderModuleGrid();
+    }
   };
-
   u.onerror = () => {
     listeningActive = false;
-    cancelAnimationFrame(listenRAF);
-    clearInterval(listenTimerInt);
+    cancelAnimationFrame(listenRAF); clearInterval(listenTimerInt);
     if(playBtn) playBtn.disabled = false;
     if(wave) wave.classList.remove('playing');
     setListenStatus('ERROR', t.code);
-    toast('SIGNAL ERROR');
   };
-
   speechSynthesis.speak(u);
 }
-
 function replayTransmission(){ playTransmission(); }
+function formatTime(s){ return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(Math.floor(s%60)).padStart(2,'0'); }
 
-function formatTime(s){
-  const m = String(Math.floor(s/60)).padStart(2,'0');
-  const ss = String(Math.floor(s%60)).padStart(2,'0');
-  return m + ':' + ss;
-}
-
-/* ============================================
+/* ============================================================
    GRAMMAR
-   ============================================ */
+   ============================================================ */
 function initGrammar(){
   const car = document.getElementById('gramCarousel');
   if(!car) return;
   car.innerHTML = '';
   GRAMMAR.forEach((g, i) => {
     const isActive = i === state.currentGrammar;
+    const done = !!state.grammarDone[i];
     const card = document.createElement('button');
-    card.className = 'mission-card listen-card' + (isActive ? ' active' : '');
-    card.style.width = '240px';
-    card.style.minHeight = '120px';
-    card.style.padding = '16px';
+    card.className = 'mission-card listen-card' + (isActive ? ' active' : '') + (done ? ' done-card' : '');
+    card.style.width = '240px'; card.style.minHeight = '120px'; card.style.padding = '16px';
     card.innerHTML = `
-      <div class="mission-card-top">
-        <span class="mission-card-num">${g.code}</span>
-        <span class="mission-card-lvl">${state.level}</span>
-      </div>
+      <div class="mission-card-top"><span class="mission-card-num">${g.code}</span><span class="mission-card-lvl">${state.level}</span></div>
       <div class="mission-card-title" style="font-size:15px;margin-top:6px">${g.topic}</div>
-      <div class="mission-card-foot" style="padding-top:10px;margin-top:auto">
-        <span class="mission-card-xp">+20 XP</span>
-        <span class="mission-card-enter">${isActive ? '● ACTIVE' : 'OPEN →'}</span>
-      </div>`;
-    card.onclick = () => {
-      state.currentGrammar = i;
-      saveState();
-      loadGrammar(i);
-      initGrammar();
-    };
+      <div class="mission-card-foot" style="padding-top:10px;margin-top:auto"><span class="mission-card-xp">+20 XP</span><span class="mission-card-enter">${done ? '✓ DONE' : (isActive ? '● ACTIVE' : 'OPEN →')}</span></div>`;
+    card.onclick = () => { state.currentGrammar = i; saveState(); loadGrammar(i); initGrammar(); };
     car.appendChild(card);
   });
-
   loadGrammar(state.currentGrammar);
 }
-
 function loadGrammar(i){
-  const g = GRAMMAR[i];
-  if(!g) return;
+  const g = GRAMMAR[i]; if(!g) return;
   document.getElementById('gramName').textContent = g.topic;
   document.getElementById('gramCode').textContent = g.code;
   const tokens = document.getElementById('gramTokens');
@@ -1843,104 +1813,42 @@ function loadGrammar(i){
     t.onclick = () => selectToken(t, word, g);
     tokens.appendChild(t);
   });
-  const intel = document.getElementById('gramIntel');
-  intel.innerHTML = '<div class="gi-hint">TAP A TOKEN TO DECRYPT</div>';
+  document.getElementById('gramIntel').innerHTML = '<div class="gi-hint">TAP A TOKEN TO DECRYPT</div>';
 }
-
 function selectToken(el, word, g){
   document.querySelectorAll('.gram-token-c').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
   const tag = g.tags[g.sentence.indexOf(word)] || '';
   const intel = document.getElementById('gramIntel');
-  intel.innerHTML = `
-    <div class="gi-word">${word}</div>
-    <div class="gi-tag">${tag}</div>
-    <div class="gi-desc">${g.intel[word] || '—'}</div>`;
-  intel.style.animation = 'none';
-  void intel.offsetWidth;
-  intel.style.animation = 'intel-in .35s ease';
+  intel.innerHTML = `<div class="gi-word">${word}</div><div class="gi-tag">${tag}</div><div class="gi-desc">${g.intel[word] || '—'}</div>`;
+  intel.style.animation = 'none'; void intel.offsetWidth; intel.style.animation = 'intel-in .35s ease';
 }
-
 function speakGrammar(){
   const g = GRAMMAR[state.currentGrammar];
-  const sentence = g.sentence.join(' ') + '.';
   if('speechSynthesis' in window){
     speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(sentence);
-    u.lang = 'de-DE';
-    u.rate = 0.9;
+    const u = new SpeechSynthesisUtterance(g.sentence.join(' ') + '.');
+    u.lang = 'de-DE'; u.rate = 0.9;
     speechSynthesis.speak(u);
   }
 }
-
 function completeGrammar(){
+  if(state.grammarDone[state.currentGrammar]){
+    toast('BEREITS ABGESCHLOSSEN');
+    return;
+  }
+  state.grammarDone[state.currentGrammar] = true;
+  saveState();
   addXp(20);
   toast('BRIEFING UNDERSTOOD +20 XP');
+  initGrammar();
+  checkGrammarCompletion();
+  renderModuleGrid();
 }
 
-/* ============================================
-   TRAINING
-   ============================================ */
-function renderExercise(){
-  const e = EXERCISES[state.currentExercise % EXERCISES.length];
-  document.getElementById('exNum').textContent = 'EXERCISE ' + String(state.currentExercise+1).padStart(2,'0') + ' // ' + state.level;
-  document.getElementById('exQ').textContent = e.q;
-  const opts = document.getElementById('exOpts');
-  opts.innerHTML = '';
-  const keys = ['A','B','C','D'];
-  e.a.forEach((txt, i) => {
-    const b = document.createElement('button');
-    b.className = 'ex-opt-c';
-    b.innerHTML = txt + '<span class="key">' + keys[i] + '</span>';
-    b.onclick = () => answerExercise(i, e.correct, b);
-    opts.appendChild(b);
-  });
-  const res = document.getElementById('exResult');
-  res.className = 'ex-result-c';
-  res.textContent = '';
-  document.getElementById('exNext').style.display = 'none';
-  document.getElementById('exScoreDisplay').textContent = state.exerciseScore + ' / ' + state.exerciseTotal;
-}
-
-function answerExercise(i, correct, clicked){
-  document.querySelectorAll('.ex-opt-c').forEach(b => b.disabled = true);
-  const res = document.getElementById('exResult');
-  state.exerciseTotal++;
-  if(i === correct){
-    clicked.classList.add('correct');
-    state.exerciseScore++;
-    res.className = 'ex-result-c show ok';
-    res.textContent = '✓ TARGET CONFIRMED // +25 XP';
-    addXp(25);
-  } else {
-    clicked.classList.add('wrong');
-    document.querySelectorAll('.ex-opt-c')[correct].classList.add('correct');
-    res.className = 'ex-result-c show no';
-    res.textContent = '✕ INTEL ERROR // REVIEW REQUIRED';
-  }
-  document.getElementById('exScoreDisplay').textContent = state.exerciseScore + ' / ' + state.exerciseTotal;
-  document.getElementById('exNext').style.display = 'inline-flex';
-  saveState();
-}
-
-function nextExercise(){
-  state.currentExercise++;
-  saveState();
-  renderExercise();
-}
-
-function startTest(type){
-  state.currentExercise = type === 1 ? 0 : 2;
-  state.exerciseScore = 0;
-  state.exerciseTotal = 0;
-  saveState();
-  enterModule('training');
-  toast('OPERATION DEPLOYED');
-}
-
-/* ============================================
+/* ============================================================
    COMMS
-   ============================================ */
+   ============================================================ */
 let mediaRecorder = null, chunks = [];
 let recTimerInt = null, recSeconds = 0;
 let audioCtx = null, analyser = null, waveRAF = null;
@@ -1949,29 +1857,20 @@ function buildWaveform(){
   const w = document.getElementById('waveform');
   if(!w) return;
   w.innerHTML = '';
-  for(let i=0;i<48;i++){
-    const b = document.createElement('div');
-    b.className = 'bar';
-    w.appendChild(b);
-  }
+  for(let i=0;i<48;i++){ const b = document.createElement('div'); b.className = 'bar'; w.appendChild(b); }
 }
-
 setInterval(()=>{
   const w = document.getElementById('waveform');
   if(!w || !w.classList.contains('idle')) return;
-  w.querySelectorAll('.bar').forEach(b => {
-    b.style.height = (10 + Math.random() * 25) + '%';
-  });
+  w.querySelectorAll('.bar').forEach(b => { b.style.height = (10 + Math.random() * 25) + '%'; });
 }, 220);
 
 async function toggleRecording(){
   const btn = document.getElementById('recordBtn');
   const status = document.getElementById('commsStatus');
   const out = document.getElementById('recordOutput');
-
   if(mediaRecorder && mediaRecorder.state === 'recording'){ mediaRecorder.stop(); return; }
-  if(!navigator.mediaDevices?.getUserMedia){ toast('MIC UNAVAILABLE'); return; }
-
+  if(!navigator.mediaDevices?.getUserMedia){ toast('MIC UNAVAILABLE', true); return; }
   try{
     const stream = await navigator.mediaDevices.getUserMedia({audio:true});
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1980,21 +1879,15 @@ async function toggleRecording(){
     analyser.fftSize = 128;
     src.connect(analyser);
     const data = new Uint8Array(analyser.frequencyBinCount);
-
     const wave = document.getElementById('waveform');
     wave.classList.remove('idle');
     const bars = wave.querySelectorAll('.bar');
-
     function draw(){
       analyser.getByteFrequencyData(data);
-      bars.forEach((b,i)=>{
-        const v = data[i % data.length] / 255;
-        b.style.height = Math.max(4, v * 100) + '%';
-      });
+      bars.forEach((b,i)=>{ const v = data[i % data.length] / 255; b.style.height = Math.max(4, v * 100) + '%'; });
       waveRAF = requestAnimationFrame(draw);
     }
     draw();
-
     chunks = [];
     mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.ondataavailable = e => chunks.push(e.data);
@@ -2003,30 +1896,32 @@ async function toggleRecording(){
       wave.classList.add('idle');
       stream.getTracks().forEach(t => t.stop());
       if(audioCtx) audioCtx.close();
-
       const blob = new Blob(chunks, {type:'audio/webm'});
       const url = URL.createObjectURL(blob);
       out.innerHTML = '';
       const a = document.createElement('a');
       a.href = url; a.download = 'achref-deutsch.webm';
       a.textContent = '▶ PLAY BACK / DOWNLOAD';
-      a.style.display = 'block';
-      a.style.marginTop = '12px';
+      a.style.display = 'block'; a.style.marginTop = '12px';
       a.style.color = 'var(--green)';
       a.style.fontFamily = "'Rajdhani', sans-serif";
-      a.style.fontSize = '13px';
-      a.style.letterSpacing = '.16em';
-      a.style.textTransform = 'uppercase';
+      a.style.fontSize = '13px'; a.style.letterSpacing = '.16em'; a.style.textTransform = 'uppercase';
       out.appendChild(a);
-
       btn.textContent = '◉ START TRANSMISSION';
       status.classList.remove('rec');
       status.innerHTML = '<span>STATUS: <b>TRANSMISSION SENT</b></span><span>' + formatTime(recSeconds) + '</span>';
       clearInterval(recTimerInt);
+      state.commsCount = (state.commsCount || 0) + 1;
+      saveState();
       addXp(50);
       toast('COMMS TRANSMISSION +50 XP');
+      renderModuleGrid();
+      if(state.commsCount >= 3 && !state.amiraSeen['comms-done']){
+        state.amiraSeen['comms-done'] = true;
+        saveState();
+        setTimeout(()=>showAmira('comms-done'), 700);
+      }
     };
-
     mediaRecorder.start();
     btn.textContent = '⏹ STOP TRANSMISSION';
     status.classList.add('rec');
@@ -2034,13 +1929,10 @@ async function toggleRecording(){
     recSeconds = 0;
     recTimerInt = setInterval(()=>{
       recSeconds++;
-      const t = document.getElementById('recTimer');
-      if(t) t.textContent = formatTime(recSeconds);
+      const t = document.getElementById('recTimer'); if(t) t.textContent = formatTime(recSeconds);
     }, 1000);
-
-  }catch(e){ toast('MIC ACCESS DENIED'); }
+  }catch(e){ toast('MIC ACCESS DENIED', true); }
 }
-
 function speakExample(){
   const t = 'Hallo. Ich heiße Achref. Ich komme aus Tunesien. Ich wohne in Sousse.';
   if('speechSynthesis' in window){
@@ -2051,9 +1943,9 @@ function speakExample(){
   }
 }
 
-/* ============================================
+/* ============================================================
    RANK TABLE
-   ============================================ */
+   ============================================================ */
 function renderRankTable(){
   const table = document.getElementById('rankTable');
   if(!table) return;
@@ -2069,28 +1961,557 @@ function renderRankTable(){
   });
 }
 
-/* ============================================
+/* ============================================================
+   ÜBUNGEN SYSTEM
+   ============================================================ */
+let uebSession = { queue: [], index: 0, source: 'unit' };
+let uebSelectedMatch = null;
+
+function uncompletedInUnit(unitId){ return EX.filter(e => e.unit === unitId && !state.uebCompleted[e.id]); }
+function uncompletedAll(){ return EX.filter(e => !state.uebCompleted[e.id]); }
+
+function renderUebungen(){
+  renderUebHUD();
+  renderUnitGrid();
+  renderUebExList();
+  renderUebErrors();
+}
+function renderUebHUD(){
+  const total = EX.length;
+  const done = Object.keys(state.uebCompleted).length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  const u = UNITS.find(x => x.id === state.uebUnit);
+  const set = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+  set('uebStatDone', done + ' / ' + total);
+  set('uebStatCorrect', pct + '%');
+  set('uebStatXp', state.xp);
+  set('uebStatProgress', pct + '%');
+  set('uebStatUnit', u ? u.tag : 'START');
+  const bar = document.getElementById('uebGlobalBar'); if(bar) bar.style.width = pct + '%';
+  set('errorsCount', Object.keys(state.uebErrors).length + ' Fehler');
+}
+function renderUnitGrid(){
+  const grid = document.getElementById('unitGrid'); if(!grid) return;
+  grid.innerHTML = '';
+  UNITS.forEach(u => {
+    const unitExs = EX.filter(e => e.unit === u.id);
+    const done = unitExs.filter(e => state.uebCompleted[e.id]).length;
+    const total = unitExs.length;
+    const pct = total ? Math.round((done/total)*100) : 0;
+    const completed = pct === 100 && total > 0;
+    const card = document.createElement('button');
+    card.className = 'unit-card' + (state.uebUnit === u.id ? ' active' : '') + (completed ? ' done-unit' : '');
+    card.innerHTML = `
+      <div class="unit-num">${u.num}</div>
+      <div class="unit-title">${u.title}</div>
+      <div class="unit-sub">${u.sub}</div>
+      <div class="unit-bar"><i style="width:${pct}%"></i></div>
+      <div class="unit-meta"><span>${done} / ${total}</span><b>${pct}%</b></div>`;
+    card.onclick = () => { state.uebUnit = u.id; saveState(); renderUebungen(); };
+    grid.appendChild(card);
+  });
+}
+function renderUebExList(){
+  const list = document.getElementById('uebExList');
+  const head = document.getElementById('uebExHeadTitle');
+  if(!list || !head) return;
+  const u = UNITS.find(x => x.id === state.uebUnit);
+  head.textContent = u ? u.title : 'ÜBUNGEN';
+  const unitExs = EX.filter(e => e.unit === state.uebUnit);
+  if(unitExs.length === 0){
+    list.innerHTML = '<div class="ueb-empty" style="grid-column:1/-1"><b>KEINE ÜBUNGEN</b>Für diese Einheit sind noch keine Übungen verfügbar.</div>';
+    return;
+  }
+  list.innerHTML = '';
+  unitExs.forEach((e, i) => {
+    const done = !!state.uebCompleted[e.id];
+    const hasErr = !!state.uebErrors[e.id];
+    const card = document.createElement('button');
+    card.className = 'ex-card' + (done ? ' done' : '') + (hasErr && !done ? ' err' : '');
+    card.innerHTML = `
+      <div class="ex-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="ex-body">
+        <div class="ex-q">${escapeHTML(e.q)}</div>
+        <div class="ex-tag">${e.cat} · ${typeLabel(e.type)}</div>
+      </div>
+      <div class="ex-status">${done ? '✓' : (hasErr ? '!' : '')}</div>`;
+    card.onclick = () => startExerciseUeb(e.id);
+    list.appendChild(card);
+  });
+}
+function renderUebErrors(){
+  const list = document.getElementById('uebErrorsList'); if(!list) return;
+  const ids = Object.keys(state.uebErrors);
+  if(ids.length === 0){
+    list.innerHTML = '<div class="ueb-empty"><b>NOCH KEINE FEHLER</b>Mach weiter — und wiederhole später deine Fehler.</div>';
+    return;
+  }
+  list.innerHTML = '';
+  ids.forEach(id => {
+    const err = state.uebErrors[id];
+    const e = EX.find(x => x.id === id);
+    if(!e) return;
+    const div = document.createElement('div');
+    div.className = 'err-item';
+    div.innerHTML = `
+      <div class="err-q">${escapeHTML(e.q)}</div>
+      <div class="err-row"><span class="lbl">Deine</span><span class="bad">${escapeHTML(err.wrong)}</span></div>
+      <div class="err-row"><span class="lbl">Richtig</span><span class="ok">${escapeHTML(err.correct)}</span></div>
+      ${e.exp ? `<div class="err-rule"><strong style="color:var(--green)">Regel:</strong> ${escapeHTML(e.exp)}</div>` : ''}`;
+    list.appendChild(div);
+  });
+}
+function typeLabel(t){ return {mc:'Multiple Choice',blank:'Lücke',tf:'Richtig/Falsch',match:'Zuordnen',build:'Satzbau',listen:'Hören',dictate:'Diktat',drag:'Drag & Drop',write:'Schreiben',speak:'Sprechen'}[t] || t; }
+function escapeHTML(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escapeAttr(s){ return String(s).replace(/'/g, "\\'"); }
+
+/* Session control */
+function startExerciseUeb(id){
+  const e = EX.find(x => x.id === id); if(!e) return;
+  uebSession.queue = [e]; uebSession.index = 0; uebSession.source = 'single';
+  openUebPlayer();
+}
+function startUnitUeb(){
+  const remaining = uncompletedInUnit(state.uebUnit);
+  if(!remaining.length){ toast('EINHEIT BEREITS ABGESCHLOSSEN'); return; }
+  uebSession.queue = remaining.slice();
+  uebSession.index = 0; uebSession.source = 'unit';
+  openUebPlayer();
+}
+function startRandomUeb(){
+  const remaining = uncompletedAll();
+  if(!remaining.length){ toast('ALLE ÜBUNGEN ERLEDIGT', true); return; }
+  shuffle(remaining);
+  uebSession.queue = remaining.slice(0, Math.min(5, remaining.length));
+  uebSession.index = 0; uebSession.source = 'random';
+  openUebPlayer();
+}
+function startDaily(){
+  const remaining = uncompletedAll();
+  if(!remaining.length){ toast('ALLE ÜBUNGEN ERLEDIGT', true); return; }
+  shuffle(remaining);
+  uebSession.queue = remaining.slice(0, Math.min(7, remaining.length));
+  uebSession.index = 0; uebSession.source = 'daily';
+  openUebPlayer();
+  toast('ÜBUNG DES TAGES GESTARTET');
+}
+function startErrorsReview(){
+  const ids = Object.keys(state.uebErrors);
+  if(!ids.length){ toast('KEINE FEHLER ZUM WIEDERHOLEN', true); return; }
+  const pool = ids.map(id => EX.find(e => e.id === id)).filter(Boolean);
+  if(!pool.length){ toast('KEINE FEHLER GEFUNDEN', true); return; }
+  uebSession.queue = pool; uebSession.index = 0; uebSession.source = 'errors';
+  openUebPlayer();
+}
+function startTestUeb(unitId){
+  const remaining = uncompletedInUnit(unitId);
+  if(!remaining.length){ toast('TEST BEREITS BESTANDEN'); return; }
+  uebSession.queue = remaining.slice();
+  uebSession.index = 0; uebSession.source = 'test';
+  openUebPlayer();
+}
+function openUebPlayer(){
+  document.getElementById('uebPlayer').classList.add('on');
+  document.body.style.overflow = 'hidden';
+  renderUebCurrent();
+}
+function closeUebPlayer(){
+  document.getElementById('uebPlayer').classList.remove('on');
+  document.body.style.overflow = '';
+  renderUebungen();
+}
+function renderUebCurrent(){
+  const e = uebSession.queue[uebSession.index];
+  if(!e){ finishUebSession(); return; }
+  const u = UNITS.find(x => x.id === e.unit);
+  document.getElementById('upUnit').textContent = u ? u.title.toUpperCase() : 'ÜBUNG';
+  document.getElementById('upCat').textContent = e.cat.toUpperCase();
+  document.getElementById('upCurrent').textContent = uebSession.index + 1;
+  document.getElementById('upTotal').textContent = uebSession.queue.length;
+  document.getElementById('upBar').style.width = (uebSession.index / uebSession.queue.length * 100) + '%';
+
+  const inner = document.getElementById('upInner');
+  uebSelectedMatch = null;
+  inner.innerHTML = '';
+
+  const cat = document.createElement('div');
+  cat.className = 'up-cat';
+  cat.textContent = 'ÜBUNG ' + String(uebSession.index+1).padStart(2,'0') + ' · ' + e.cat.toUpperCase() + ' · ' + typeLabel(e.type).toUpperCase();
+
+  const prompt = document.createElement('div');
+  prompt.className = 'ex-prompt';
+  prompt.innerHTML = `<div class="up-question">${formatQuestion(e.q)}</div>`;
+
+  inner.appendChild(cat);
+  inner.appendChild(prompt);
+
+  switch(e.type){
+    case 'mc': case 'blank': renderUebMC(inner, e); break;
+    case 'tf': renderUebTF(inner, e); break;
+    case 'match': renderUebMatch(inner, e); break;
+    case 'build': renderUebBuild(inner, e); break;
+    case 'listen': renderUebListen(inner, e); break;
+    case 'dictate': renderUebDictate(inner, e); break;
+    case 'write': renderUebWrite(inner, e); break;
+    case 'speak': renderUebSpeak(inner, e); break;
+  }
+}
+function formatQuestion(q){ return escapeHTML(q).replace(/___/g, '<span class="blank">___</span>'); }
+
+function renderUebMC(inner, e){
+  const opts = document.createElement('div');
+  opts.className = 'opts';
+  const keys = ['A','B','C','D','E'];
+  e.opts.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.dataset.idx = i;
+    b.innerHTML = `<span class="okey">${keys[i]}</span><span>${escapeHTML(o)}</span>`;
+    b.onclick = () => checkUebMC(e, i, b);
+    opts.appendChild(b);
+  });
+  inner.appendChild(opts);
+}
+function checkUebMC(e, idx, btn){
+  const all = document.querySelectorAll('#upInner .opt');
+  all.forEach(b => b.disabled = true);
+  const correct = idx === e.correct;
+  if(correct){ btn.classList.add('correct'); onUebCorrect(e); }
+  else { btn.classList.add('wrong'); all[e.correct].classList.add('correct'); onUebWrong(e, e.opts[idx], e.opts[e.correct]); }
+  showUebFeedback(e, correct, e.opts[idx], e.opts[e.correct]);
+  showUebNextButton();
+}
+function renderUebTF(inner, e){
+  const opts = document.createElement('div');
+  opts.className = 'opts';
+  [['Richtig', true], ['Falsch', false]].forEach(([label, val]) => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.innerHTML = `<span class="okey">${val ? '✓' : '✕'}</span><span>${label}</span>`;
+    b.onclick = () => {
+      const all = document.querySelectorAll('#upInner .opt');
+      all.forEach(x => x.disabled = true);
+      const correct = val === e.correct;
+      if(correct){ b.classList.add('correct'); onUebCorrect(e); }
+      else {
+        b.classList.add('wrong');
+        const cLabel = e.correct ? 'Richtig' : 'Falsch';
+        all.forEach(x => { if(x.textContent.includes(cLabel)) x.classList.add('correct'); });
+        onUebWrong(e, label, cLabel);
+      }
+      showUebFeedback(e, correct, label, e.correct ? 'Richtig' : 'Falsch');
+      showUebNextButton();
+    };
+    opts.appendChild(b);
+  });
+  inner.appendChild(opts);
+}
+function renderUebMatch(inner, e){
+  const grid = document.createElement('div');
+  grid.className = 'match-grid';
+  const left = document.createElement('div'); left.className = 'match-col';
+  const right = document.createElement('div'); right.className = 'match-col';
+  const pairs = e.pairs.slice();
+  const rightOrder = pairs.map((p, i) => ({...p, _i: i})).sort(() => Math.random() - 0.5);
+  pairs.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.className = 'match-item';
+    b.dataset.side = 'left'; b.dataset.idx = i;
+    b.textContent = p.a;
+    b.onclick = () => selectUebMatch(b, e);
+    left.appendChild(b);
+  });
+  rightOrder.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'match-item';
+    b.dataset.side = 'right'; b.dataset.idx = p._i;
+    b.textContent = p.b;
+    b.onclick = () => selectUebMatch(b, e);
+    right.appendChild(b);
+  });
+  grid.appendChild(left); grid.appendChild(right);
+  inner.appendChild(grid);
+}
+function selectUebMatch(btn, e){
+  if(btn.classList.contains('matched')) return;
+  if(!uebSelectedMatch){
+    document.querySelectorAll('#upInner .match-item.selected').forEach(x => x.classList.remove('selected'));
+    uebSelectedMatch = btn; btn.classList.add('selected'); return;
+  }
+  if(uebSelectedMatch === btn){ btn.classList.remove('selected'); uebSelectedMatch = null; return; }
+  if(uebSelectedMatch.dataset.side === btn.dataset.side){
+    uebSelectedMatch.classList.remove('selected');
+    uebSelectedMatch = btn; btn.classList.add('selected'); return;
+  }
+  const a = uebSelectedMatch, b = btn;
+  if(a.dataset.idx === b.dataset.idx){
+    a.classList.remove('selected');
+    a.classList.add('matched'); b.classList.add('matched');
+    uebSelectedMatch = null;
+    const remaining = document.querySelectorAll('#upInner .match-item:not(.matched)').length;
+    if(remaining === 0){
+      onUebCorrect(e);
+      showUebFeedback(e, true, 'Alle Paare korrekt', 'Alle Paare korrekt');
+      showUebNextButton();
+    }
+  } else {
+    a.classList.add('wrong'); b.classList.add('wrong');
+    setTimeout(()=>{ a.classList.remove('wrong','selected'); b.classList.remove('wrong'); }, 500);
+    uebSelectedMatch = null;
+  }
+}
+function renderUebBuild(inner, e){
+  const zone = document.createElement('div');
+  zone.className = 'build-zone'; zone.id = 'uebBuildZone';
+  const pool = document.createElement('div');
+  pool.className = 'build-pool'; pool.id = 'uebBuildPool';
+  const shuffled = e.words.slice().sort(() => Math.random() - 0.5);
+  shuffled.forEach(w => {
+    const b = document.createElement('button');
+    b.className = 'build-word';
+    b.textContent = w;
+    b.onclick = () => {
+      if(b.classList.contains('used')) return;
+      b.classList.add('used');
+      const slot = document.createElement('button');
+      slot.className = 'build-slot';
+      slot.textContent = w;
+      slot.onclick = () => { slot.remove(); b.classList.remove('used'); updateUebBuildZone(); };
+      zone.appendChild(slot); updateUebBuildZone();
+    };
+    pool.appendChild(b);
+  });
+  inner.appendChild(zone); inner.appendChild(pool);
+  const actions = document.createElement('div');
+  actions.className = 'up-actions';
+  actions.innerHTML = `<span></span><button class="btn primary" onclick="checkUebBuild('${e.id}')">Prüfen</button>`;
+  inner.appendChild(actions);
+}
+function updateUebBuildZone(){
+  const zone = document.getElementById('uebBuildZone'); if(!zone) return;
+  const slots = zone.querySelectorAll('.build-slot');
+  zone.classList.toggle('has-items', slots.length > 0);
+}
+function checkUebBuild(id){
+  const e = EX.find(x => x.id === id);
+  const zone = document.getElementById('uebBuildZone');
+  const slots = [...zone.querySelectorAll('.build-slot')].map(s => s.textContent);
+  const answer = slots.join(' ');
+  const correct = answer.toLowerCase() === e.answer.toLowerCase();
+  zone.classList.add(correct ? 'correct' : 'wrong');
+  if(correct) onUebCorrect(e); else onUebWrong(e, answer, e.answer);
+  showUebFeedback(e, correct, answer, e.answer);
+  document.querySelectorAll('#uebBuildPool .build-word').forEach(b => b.disabled = true);
+  showUebNextButton();
+}
+function renderUebListen(inner, e){
+  const btn = document.createElement('button');
+  btn.className = 'listen-btn';
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor" stroke="none"/></svg> Abspielen';
+  btn.onclick = () => speak(e.audio || e.q);
+  inner.appendChild(btn);
+  const ctrl = document.createElement('div');
+  ctrl.className = 'listen-controls';
+  ctrl.innerHTML = `
+    <button class="listen-ctrl" onclick="speak('${escapeAttr(e.audio || '')}', 0.75)">0.75x</button>
+    <button class="listen-ctrl on" onclick="speak('${escapeAttr(e.audio || '')}', 1)">1x</button>
+    <button class="listen-ctrl" onclick="speak('${escapeAttr(e.audio || '')}', 0.5)">0.5x</button>`;
+  inner.appendChild(ctrl);
+  renderUebMC(inner, e);
+}
+function renderUebDictate(inner, e){
+  const btn = document.createElement('button');
+  btn.className = 'listen-btn';
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor" stroke="none"/></svg> Abspielen';
+  btn.onclick = () => speak(e.audio || e.answer || e.q);
+  inner.appendChild(btn);
+  const ctrl = document.createElement('div');
+  ctrl.className = 'listen-controls';
+  ctrl.innerHTML = `
+    <button class="listen-ctrl" onclick="speak('${escapeAttr(e.audio || '')}', 0.75)">0.75x</button>
+    <button class="listen-ctrl on" onclick="speak('${escapeAttr(e.audio || '')}', 1)">1x</button>`;
+  inner.appendChild(ctrl);
+  const input = document.createElement('input');
+  input.className = 'text-input';
+  input.placeholder = 'Schreibe, was du hörst…';
+  input.id = 'uebDictInput';
+  input.autocomplete = 'off'; input.spellcheck = false;
+  input.onkeydown = (ev) => { if(ev.key === 'Enter') checkUebDictate(e.id); };
+  inner.appendChild(input);
+  const actions = document.createElement('div');
+  actions.className = 'up-actions';
+  actions.innerHTML = `<span></span><button class="btn primary" onclick="checkUebDictate('${e.id}')">Prüfen</button>`;
+  inner.appendChild(actions);
+  setTimeout(()=>input.focus(), 200);
+}
+function checkUebDictate(id){
+  const e = EX.find(x => x.id === id);
+  const input = document.getElementById('uebDictInput');
+  const val = input.value.trim();
+  const correct = val.toLowerCase() === (e.answer || '').toLowerCase();
+  input.disabled = true;
+  if(correct) onUebCorrect(e); else onUebWrong(e, val, e.answer);
+  showUebFeedback(e, correct, val, e.answer);
+  showUebNextButton();
+}
+function renderUebWrite(inner, e){
+  const ta = document.createElement('textarea');
+  ta.className = 'text-input';
+  ta.placeholder = 'Schreibe hier…';
+  ta.id = 'uebWriteInput';
+  inner.appendChild(ta);
+  const hint = document.createElement('div');
+  hint.style.cssText = 'font-family:Rajdhani,sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-top:10px;';
+  hint.textContent = 'Tipp: ' + (e.hint || 'Schreibe vollständige Sätze auf Deutsch.');
+  inner.appendChild(hint);
+  const actions = document.createElement('div');
+  actions.className = 'up-actions';
+  actions.innerHTML = `<span></span><button class="btn primary" onclick="checkUebWrite('${e.id}')">Prüfen</button>`;
+  inner.appendChild(actions);
+}
+function checkUebWrite(id){
+  const e = EX.find(x => x.id === id);
+  const ta = document.getElementById('uebWriteInput');
+  const val = ta.value.trim();
+  const must = e.must || [];
+  const lower = val.toLowerCase();
+  const missing = must.filter(w => !lower.includes(w.toLowerCase()));
+  const correct = missing.length === 0 && val.length > 10;
+  ta.disabled = true;
+  if(correct) onUebCorrect(e); else onUebWrong(e, val || '(leer)', must.join(', '));
+  showUebFeedback(e, correct, val || '(leer)', must.join(', '));
+  showUebNextButton();
+}
+function renderUebSpeak(inner, e){
+  const target = document.createElement('div');
+  target.style.cssText = 'background:#0d110d;border:1px solid var(--border);border-left:2px solid var(--green);padding:20px;font-family:Rajdhani,sans-serif;font-size:20px;color:#fff;letter-spacing:.03em;line-height:1.5;margin-bottom:18px;';
+  target.textContent = e.say || e.q;
+  inner.appendChild(target);
+  const btnPlay = document.createElement('button');
+  btnPlay.className = 'listen-btn small';
+  btnPlay.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor" stroke="none"/></svg> Vorlesen';
+  btnPlay.onclick = () => speak(e.say || e.q);
+  inner.appendChild(btnPlay);
+  const btnMic = document.createElement('button');
+  btnMic.className = 'listen-btn small';
+  btnMic.style.cssText += 'margin-left:10px;';
+  btnMic.innerHTML = '🎙️ Aufnehmen';
+  btnMic.onclick = () => toast('SPRACHERKENNUNG IN DIESER DEMO NICHT AKTIV', true);
+  inner.appendChild(btnMic);
+  const actions = document.createElement('div');
+  actions.className = 'up-actions';
+  actions.innerHTML = `<span></span><button class="btn primary" onclick="speakUebComplete('${e.id}')">Als verstanden markieren</button>`;
+  inner.appendChild(actions);
+}
+function speakUebComplete(id){
+  const e = EX.find(x => x.id === id);
+  onUebCorrect(e);
+  showUebFeedback(e, true, 'Aussprache geübt', 'Aussprache geübt');
+  showUebNextButton();
+}
+function showUebFeedback(e, correct, given, expected){
+  const inner = document.getElementById('upInner');
+  const fb = document.createElement('div');
+  fb.className = 'feedback on ' + (correct ? 'ok' : 'no');
+  if(correct){
+    fb.innerHTML = `<div class="feedback-head">✓ Richtig</div><div class="feedback-body">${e.exp ? escapeHTML(e.exp) : 'Weiter so!'}<div class="feedback-xp">+${e.xp} XP</div></div>`;
+  } else {
+    fb.innerHTML = `<div class="feedback-head">Fast! · Richtig ist:</div><div class="feedback-body"><div style="font-size:17px;color:#fff;margin-bottom:10px;"><strong>${escapeHTML(expected)}</strong></div><div style="color:var(--text-2);font-size:14px;"><span class="wrong-ans">${escapeHTML(given)}</span> ist nicht korrekt.</div>${e.exp ? `<div style="margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);font-size:14px;color:var(--text-2);"><strong style="color:var(--green)">Regel:</strong> ${escapeHTML(e.exp)}</div>` : ''}</div>`;
+  }
+  inner.appendChild(fb);
+}
+function showUebNextButton(){
+  const inner = document.getElementById('upInner');
+  const actions = document.createElement('div');
+  actions.className = 'up-actions';
+  const last = uebSession.index >= uebSession.queue.length - 1;
+  actions.innerHTML = `<span></span><button class="btn primary" onclick="nextUebExercise()">${last ? 'Beenden →' : 'Weiter →'}</button>`;
+  inner.appendChild(actions);
+  setTimeout(()=>actions.scrollIntoView({behavior:'smooth',block:'nearest'}), 100);
+}
+function onUebCorrect(e){
+  if(state.uebCompleted[e.id]) return;
+  state.uebCompleted[e.id] = true;
+  const before = getRank(state.xp);
+  state.xp += e.xp;
+  state.streak = (state.streak || 0) + 1;
+  if(state.streak % 5 === 0){
+    state.xp += 25;
+    setTimeout(()=>toast('SERIE +25 XP BONUS'), 400);
+  }
+  if(state.uebErrors[e.id]) delete state.uebErrors[e.id];
+  const after = getRank(state.xp);
+  saveState();
+  showXpFloat('+' + e.xp + ' XP');
+  updateHUD();
+  if(after.lvl > before.lvl){ setTimeout(()=>showLevelUp(after), 600); }
+  checkUnitCompletion(e.unit);
+  checkLevelCompletion();
+  checkMissionsCompletion();
+}
+function onUebWrong(e, given, expected){
+  state.streak = 0;
+  state.uebErrors[e.id] = { wrong: given, correct: expected };
+  saveState();
+}
+function nextUebExercise(){
+  uebSession.index++;
+  if(uebSession.index >= uebSession.queue.length){ finishUebSession(); return; }
+  renderUebCurrent();
+}
+function finishUebSession(){
+  document.getElementById('upBar').style.width = '100%';
+  const total = uebSession.queue.length;
+  const done = uebSession.queue.filter(e => state.uebCompleted[e.id]).length;
+  const inner = document.getElementById('upInner');
+  inner.innerHTML = `
+    <div class="ex-prompt" style="text-align:center;padding:44px 26px;">
+      <div class="up-cat" style="justify-content:center;display:flex;">SESSION ABGESCHLOSSEN</div>
+      <div class="up-question" style="margin:14px 0;">${done} / ${total} Richtig</div>
+      <div class="up-hint">Weiter so, Achref.</div>
+    </div>
+    <div class="up-actions" style="justify-content:center;">
+      <button class="btn primary" onclick="closeUebPlayer()">Zurück zur Übersicht</button>
+      <button class="btn ghost" onclick="startRandomUeb()">Nochmal üben</button>
+    </div>`;
+}
+function speak(text, rate){
+  if(!text) return;
+  if(!('speechSynthesis' in window)){ toast('AUDIO NICHT VERFÜGBAR', true); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'de-DE'; u.rate = rate || 1;
+  speechSynthesis.speak(u);
+}
+
+/* ============================================================
    TOAST
-   ============================================ */
+   ============================================================ */
 let toastTimer;
-function toast(msg){
+function toast(msg, isError){
   const t = document.getElementById('toast');
   t.textContent = msg;
+  t.classList.toggle('error', !!isError);
   t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=>t.classList.remove('show'), 2400);
 }
+function shuffle(a){
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
-/* ============================================
+/* ============================================================
    INIT
-   ============================================ */
+   ============================================================ */
 let initialized = false;
 function initAfterBoot(){
   if(initialized) return;
   initialized = true;
-
   buildLevelGrid();
-
   const savedLevel = localStorage.getItem('selectedLevel');
   if(savedLevel && LEVELS.includes(savedLevel)){
     state.level = savedLevel;
@@ -2101,17 +2522,17 @@ function initAfterBoot(){
     renderModuleGrid();
     renderMissions();
     renderIntel();
-    renderExercise();
     renderRankTable();
     buildWaveform();
     initListening();
     initGrammar();
+    renderUebungen();
   } else {
     openLevelScreen();
   }
 }
 
-/* Expose globally */
+/* Expose globals */
 window.goBack = goBack;
 window.enterModule = enterModule;
 window.openLevelScreen = openLevelScreen;
@@ -2119,11 +2540,9 @@ window.selectLevel = selectLevel;
 window.scrollCarousel = scrollCarousel;
 window.openMission = openMission;
 window.revealIntel = revealIntel;
-window.nextIntelCarousel = nextIntelCarousel;
-window.nextExercise = nextExercise; 
+window.acquireIntel = acquireIntel;
 window.toggleRecording = toggleRecording;
 window.speakExample = speakExample;
-window.startTest = startTest;
 window.playTransmission = playTransmission;
 window.replayTransmission = replayTransmission;
 window.toggleTranscript = toggleTranscript;
@@ -2131,8 +2550,20 @@ window.speakGrammar = speakGrammar;
 window.completeGrammar = completeGrammar;
 window.skipBoot = skipBoot;
 window.closeLevelUp = closeLevelUp;
+window.startDaily = startDaily;
+window.startRandomUeb = startRandomUeb;
+window.startErrorsReview = startErrorsReview;
+window.startExerciseUeb = startExerciseUeb;
+window.startUnitUeb = startUnitUeb;
+window.startTestUeb = startTestUeb;
+window.closeUebPlayer = closeUebPlayer;
+window.nextUebExercise = nextUebExercise;
+window.checkUebBuild = checkUebBuild;
+window.checkUebDictate = checkUebDictate;
+window.checkUebWrite = checkUebWrite;
+window.speakUebComplete = speakUebComplete;
+window.speak = speak;
 
-/* START */
 loadState();
 runBoot();
 </script>
