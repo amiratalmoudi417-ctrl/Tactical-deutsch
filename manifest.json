@@ -1,0 +1,52 @@
+{
+  "name": "Tactical Deutsch // Operator Achref",
+  "short_name": "Tactical Deutsch",
+  "description": "German A1.1 & A1.2 training simulator",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050705",
+  "theme_color": "#050705",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "wallpaper.jpg",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Command Center"
+    },
+    {
+      "src": "wallpaper.jpg",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "label": "Training Modules"
+    }
+  ]
+}
